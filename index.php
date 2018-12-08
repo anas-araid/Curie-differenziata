@@ -8,7 +8,7 @@
     <div class="mdl-layout mdl-js-layout">
       <header class="mdl-layout__header mdl-layout__header--transparent">
         <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">Curie-differenziata</span>
+          <span class="mdl-layout-title style-text-color">Curie-differenziata</span>
           <div class="mdl-layout-spacer"></div>
           <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="">Link</a>
@@ -19,7 +19,7 @@
         </div>
       </header>
       <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Curie-differenziata</span>
+        <span class="mdl-layout-title style-text-color">Curie-differenziata</span>
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="">Link</a>
           <a class="mdl-navigation__link" href="">Link</a>

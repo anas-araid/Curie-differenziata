@@ -32,48 +32,64 @@ In your browser, navigate to localhost/Curie-differenziata and start testing...
 ## Contribution
 
 ### What is Curie-differenziata?
-```
+
 A rating system, that allow the school to check the recycle situation in classrooms and offices.
-```
 
 ### Guidelines
+
+Take a moment to read this document in order to make the process simple and consistent with the one used by the rest of the contributor.
+
+* Fork the project
+* Make a pull request
+
 ```
 The final user is the school operator that will provide the checking and rating, so the interface must be easy and intuitive, like the [project prototype](../docs/img).
 ```
+
+
+#### Some coding standards
+
+* In style.css every class must start with _style-classname_
+
 #### Entities
 
 * SchoolOperator
-... ID
-... Name
-... Surname
-... Code
-... Password
+ -ID
+ -Name
+ -Surname
+ -Code
+ -Password
 
 * WasteType
-... ID
-... Type
+ -ID
+ -Type
 
 * WasteBin
-... ID
-... Photo
-... Rating
-... ID_WasteType
+ -ID
+ -Photo
+ -Rating
+ -ID_WasteType
 
 * Address
-... ID
-... Description
+ -ID
+ -Description
 
 * Room
-... ID
-... Classrooms
-... ID_Address
+ -ID
+ -Classrooms
+ -ID_Address
 
 * Checking
-... ID
-... Date
-... ID_SchoolOperator
-... ID_WasteBin
-... ID_Address
+ -ID
+ -Date
+ -ID_SchoolOperator
+ -ID_WasteBin
+ -ID_Address
+
+#### License
+```
+By contributing to the code or documentation, you agree to release your code according to the open source license already present in the project repository.
+```
 
 ## Built With
 
