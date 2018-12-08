@@ -53,18 +53,18 @@ The final user is the school operator that will provide the checking and rating,
 
 #### Entities
 
-* SchoolOperator
+* SchoolOperator (t_operatori)
  -ID
  -Name
  -Surname
  -Code
  -Password
 
-* WasteType
+* WasteType (t_tipologia)
  -ID
  -Type
 
-* WasteBin
+* WasteBin (t_cestino)
  -ID
  -Photo
  -Rating

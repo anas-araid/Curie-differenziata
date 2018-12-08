@@ -30,11 +30,22 @@
         <section>
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--7-col mdl-cell--6-col-tablet">
-              <h3 class="style-text-grey">Valuta la raccolta differenziata in modo <span class="style-text-green">facile</span> e <span class="style-text-green">veloce...</span></h3>
-              <div style="text-align:center">
+              <form action="" method="POST" style="text-align:center">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="number" id="codice" name="codice" required="">
+                  <label class="mdl-textfield__label" for="codice">Codice</label>
+                </div>
                 <br>
-                <button class="special-button" onclick="location.href='login.php'">INIZIA SUBITO!</button>
-              </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="password" id="confermaPassword" name="confermaPassword" required="">
+                  <label class="mdl-textfield__label" for="confermaPassword">Password</label>
+                </div>
+                <div>
+                  <button class="style-button style-gradient" style="color:white;margin:10px;width:40%" type="submit">Crea profilo</button>
+                  <br>
+                  <button class="style-button style-gradient" style="color:white;margin:10px;width:40%" type="reset" onclick="location.href='core/logout.php'">Indietro</button>
+                </div>
+              </form>
             </div>
             <div class="mdl-cell mdl-cell--5-col mdl-cell--2-col-tablet mdl-cell--hide-phone">
               <img src="img/recycling.png" style="width:50%"></img>
