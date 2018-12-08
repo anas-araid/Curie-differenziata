@@ -1,6 +1,24 @@
+body, h1, h2, h3, h4, h5, h6, p, a, span{
+  font-family: 'Quicksand', sans-serif!important;
+  font-weight: 400;
+}
 .mdl-layout__drawer-button{
+  color: grey!important;
+  outline: none;
+}
+.style-text-green{
   color: #2ECC71!important;
 }
-.style-text-color{
-  color: #2ECC71!important;
+.style-text-grey{
+  color: grey!important;
+}
+.style-child{
+  display:table-cell;
+  vertical-align: middle;
+  text-align: left;
+}
+.style-parent{
+  display:table;
+  height: 80%;
+  width: 100%;
 }

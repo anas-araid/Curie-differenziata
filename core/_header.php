@@ -1,6 +1,6 @@
-<title>Curie-differenziata</title>
+<title>Curie Differenziata</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="theme-color" content="#2ECC71">
+<meta name="theme-color" content="#FFFFFF">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="Anas Araid">
 <link type="text/css" rel="stylesheet" href="css/reset.css" />
