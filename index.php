@@ -18,14 +18,14 @@
   </head>
   <body style="margin:0">
     <div class="mdl-layout mdl-js-layout">
-      <header class="mdl-layout__header mdl-layout__header--transparent">
+      <header class="mdl-layout__header mdl-layout--fixed-header mdl-layout__header--transparent">
         <div class="mdl-layout__header-row">
           <span class="mdl-layout-title style-text-green" style="font-weight:500">Curie</span><span class="mdl-layout-title style-text-grey" style="font-weight:100">Differenziata</span>
           <div class="mdl-layout-spacer"></div>
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="core/logout.php">Home</a>
-            <a class="mdl-navigation__link" onclick="redirectLogin()">Login</a>
-            <a class="mdl-navigation__link" href="">Progetto</a>
+            <a class="mdl-navigation__link style-text-green" href="core/logout.php">Home</a>
+            <a class="mdl-navigation__link style-text-green" onclick="redirectLogin()" style="cursor:pointer">Login</a>
+            <a class="mdl-navigation__link style-text-green" href="">Progetto</a>
           </nav>
         </div>
       </header>
@@ -33,7 +33,7 @@
         <span class="mdl-layout-title style-text-green" style="font-weight:500">Curie</span><span class="mdl-layout-title style-text-grey" style="font-weight:100">Differenziata</span>
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="core/logout.php">Home</a>
-          <a class="mdl-navigation__link" onclick="redirectLogin()">Login</a>
+          <a class="mdl-navigation__link" onclick="redirectLogin()" style="cursor:pointer">Login</a>
           <a class="mdl-navigation__link" href="">Progetto</a>
         </nav>
       </div>
@@ -63,20 +63,21 @@
           <div class="mdl-grid" style="background:url(img/bg.svg);background-repeat:no-repeat;background-size:cover;margin:0;bottom:0">
             <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
               <img src="img/bg1.png" style="width:100%"></img>
-              <div>
-                <p style="color:white;font-size:1.6vw">Copyright 2018 Anas Araid in collaborazione con Marie Curie Pergine <?php echo $_SESSION['curieInclude'] ?></p>
-              </div>
             </div>
           </div>
         </section>
         <script>
           function redirectLogin(){
-            <?php
-              $_SESSION['curieInclude'] = "core/login.php";
-            ?>
-            location.href = "index.php";
+            location.href = "";
+            location.href = "index.php?login=true";
           }
         </script>
+        <?php
+          if ($_GET['login']){
+            $_SESSION['curieInclude'] = "core/login.php";
+            echo "<script>location.href='index.php'</script>";
+          }
+        ?>
       </main>
     </div>
   </body>
