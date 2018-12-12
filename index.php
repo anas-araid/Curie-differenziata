@@ -2,6 +2,18 @@
   <head>
     <?php
       include "core/_header.php";
+      session_start();
+      try{
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        // error_reporting per togliere il notice quando non trova isLogged
+        error_reporting(0);
+        include "core/dbConnection.php";
+        if (!$_SESSION['curieInclude']){
+          $_SESSION = array();
+          $_SESSION['curieInclude'] = 'core/home.php';
+        }
+      }catch(Exception $e){
+      }
      ?>
   </head>
   <body style="margin:0">
@@ -11,7 +23,8 @@
           <span class="mdl-layout-title style-text-green" style="font-weight:500">Curie</span><span class="mdl-layout-title style-text-grey" style="font-weight:100">Differenziata</span>
           <div class="mdl-layout-spacer"></div>
           <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Login</a>
+            <a class="mdl-navigation__link" href="core/logout.php">Home</a>
+            <a class="mdl-navigation__link" onclick="redirectLogin()">Login</a>
             <a class="mdl-navigation__link" href="">Progetto</a>
           </nav>
         </div>
@@ -19,7 +32,8 @@
       <div class="mdl-layout__drawer">
         <span class="mdl-layout-title style-text-green" style="font-weight:500">Curie</span><span class="mdl-layout-title style-text-grey" style="font-weight:100">Differenziata</span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="">Login</a>
+          <a class="mdl-navigation__link" href="core/logout.php">Home</a>
+          <a class="mdl-navigation__link" onclick="redirectLogin()">Login</a>
           <a class="mdl-navigation__link" href="">Progetto</a>
         </nav>
       </div>
@@ -30,11 +44,17 @@
         <section>
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--7-col mdl-cell--6-col-tablet">
-              <h3 class="style-text-grey">Valuta la raccolta differenziata in modo <span class="style-text-green">facile</span> e <span class="style-text-green">veloce...</span></h3>
-              <div style="text-align:center">
-                <br>
-                <button class="special-button" onclick="location.href='login.php'">INIZIA SUBITO!</button>
-              </div>
+              <?php
+                if ($error_message) {
+                  echo "
+                    <script>
+                      window.onload = function(){
+                        flatAlertClose('Accesso', 'Impossibile connettersi al database', 'error');
+                      }
+                    </script>";
+                }
+                include $_SESSION['curieInclude'];
+              ?>
             </div>
             <div class="mdl-cell mdl-cell--5-col mdl-cell--2-col-tablet mdl-cell--hide-phone">
               <img src="img/recycling.png" style="width:50%"></img>
@@ -44,11 +64,19 @@
             <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
               <img src="img/bg1.png" style="width:100%"></img>
               <div>
-                <p style="color:white;font-size:1.6vw">Copyright 2018 Anas Araid in collaborazione con Marie Curie Pergine</p>
+                <p style="color:white;font-size:1.6vw">Copyright 2018 Anas Araid in collaborazione con Marie Curie Pergine <?php echo $_SESSION['curieInclude'] ?></p>
               </div>
             </div>
           </div>
         </section>
+        <script>
+          function redirectLogin(){
+            <?php
+              $_SESSION['curieInclude'] = "core/login.php";
+            ?>
+            location.href = "index.php";
+          }
+        </script>
       </main>
     </div>
   </body>
