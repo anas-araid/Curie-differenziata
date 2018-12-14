@@ -3,7 +3,7 @@
   $ipaddress = $_SERVER['REMOTE_ADDR'];
   $timestamp = date('d/m/Y H:i:s');
   $browser = $_SERVER['HTTP_USER_AGENT'];
-  $line = "Connessione: [".$timestamp."] - "." - ".$ipaddress." - ".$browser."\n";
+  $line = "Connessione: [".$timestamp."] - ".$_SESSION['Nome']." ".$_SESSION['Cognome']." - ".$ipaddress." - ".$browser."\n";
   $filename = "log.txt";
   $filedir = "../$filename";
   if (!file_exists($filedir)){

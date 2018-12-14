@@ -1,16 +1,22 @@
 <form action="" method="POST" style="text-align:center">
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <select class="mdl-textfield__input" type="select" id="codice" name="codice" required="">
+    <select class="mdl-textfield__input" id="operatore" name="operatore" required="" style="outline:none">
       <?php
-
-       ?>
+        include 'core/getData.php';
+        $users = getOperatore(null, $db_conn);
+        for ($i=0; $i < count($users); $i++){
+          if ($users[$i][3] == 1){
+            echo "<option value='".$users[$i][0]."'>".$users[$i][1]." ".$users[$i][2]."</option>";
+          }
+        }
+      ?>
     </select>
-    <label class="mdl-textfield__label" for="codice">Codice</label>
+    <label class="mdl-textfield__label" for="operatore">Operatore</label>
   </div>
   <br>
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input class="mdl-textfield__input" type="password" id="confermaPassword" name="confermaPassword" required="">
-    <label class="mdl-textfield__label" for="confermaPassword">Password</label>
+    <input class="mdl-textfield__input" type="password" id="password" name="password" required="">
+    <label class="mdl-textfield__label" for="password">Password</label>
   </div>
   <p>Non hai ancora un profilo? <a style="color:#2ECC71;text-decoration:underline;cursor:pointer">Clicca qui</a></p>
   <div>
@@ -22,9 +28,9 @@
 <?php
   if(isset($_POST['password'])){
     include 'core/functions.php';
-    $codice = text_filter_encrypt($_POST["codice"]);
+    $id = text_filter($_POST["operatore"]);
     $password = text_filter_encrypt($_POST["password"]);
-    $selectQuery = "SELECT * FROM t_operatori WHERE Codice='$codice' AND Password='$password'";
+    $selectQuery = "SELECT * FROM t_operatori WHERE ID='$id' AND Password='$password'";
     $select = mysqli_query($db_conn, $selectQuery);
     if ($select==null){
       die('error');
@@ -33,7 +39,12 @@
     $esistenzaUtente = false;
     while($ris = mysqli_fetch_array ($select, MYSQLI_ASSOC)){
       $esistenzaUtente = true;
-      $_SESSION['include'] = ' ';
+      //$_SESSION['include'] = ' ';
+      $operatore = getOperatore($id, $db_conn);
+      $_SESSION['ID'] = $operatore['ID'];
+      $_SESSION['Nome'] = $operatore['Nome'];
+      $_SESSION['Cognome'] = $operatore['Cognome'];
+      $_SESSION['Codice'] = $operatore['Codice'];
       echo "
       <script>
       flatAlert('Accesso eseguito con successo', '', 'success', 'core/log.php');
