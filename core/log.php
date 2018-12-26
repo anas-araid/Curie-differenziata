@@ -13,5 +13,5 @@
   }
   fwrite($log, $line);
   fclose($log);
-  //header("location:../index.php");
+  header("location:../checking.php");
 ?>
