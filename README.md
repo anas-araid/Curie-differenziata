@@ -50,6 +50,7 @@ The final user is the school operator that will provide the checking and rating,
 #### Some coding standards
 
 * In style.css every class must start with _style-classname_
+* Every php function file must be saved in core/ directory 
 
 #### Entities
 

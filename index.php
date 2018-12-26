@@ -6,8 +6,10 @@
       try{
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         // error_reporting per togliere il notice quando non trova isLogged
-        //error_reporting(0);
+        // error_reporting(0);
+        // inclusoine del file per la connessione al database
         include "core/dbConnection.php";
+        // se la session non esiste, allora integra la home al layout
         if (!$_SESSION['curieInclude']){
           $_SESSION = array();
           $_SESSION['curieInclude'] = 'core/home.php';
@@ -45,6 +47,7 @@
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--7-col mdl-cell--6-col-tablet">
               <?php
+                // variabile $error_message situata in dbConnection.php
                 if ($error_message) {
                   echo "
                     <script>
@@ -53,6 +56,7 @@
                       }
                     </script>";
                 }
+                // integra il file salvato nella session
                 include $_SESSION['curieInclude'];
               ?>
             </div>
@@ -67,6 +71,7 @@
           </div>
         </section>
         <script>
+          // faccio una get per il redirect alla pagina del login
           function redirectLogin(){
             location.href = "";
             location.href = "index.php?login=true";
