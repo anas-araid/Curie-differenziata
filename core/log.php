@@ -13,5 +13,6 @@
   }
   fwrite($log, $line);
   fclose($log);
+  $_SESSION['curieInclude'] = 'core/lists.php';
   header("location:../checking.php");
 ?>

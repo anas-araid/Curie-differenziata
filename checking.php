@@ -9,10 +9,14 @@
         // error_reporting(0);
         // inclusoine del file per la connessione al database
         include "core/dbConnection.php";
-        // se la session non esiste, allora integra la home al layout
+        // se la session non esiste, allora integra i contolli al layout
         if (!$_SESSION['curieInclude']){
           $_SESSION = array();
-          $_SESSION['curieInclude'] = 'core/home.php';
+          $_SESSION['curieInclude'] = 'core/lists.php';
+        }
+        if (isset($_GET['back'])) {
+          $_SESSION['curieInclude'] = 'core/lists.php';
+          $_SESSION['search'] = null;
         }
       }catch(Exception $e){
       }
@@ -62,9 +66,7 @@
             <h2 class="style-text-grey">Controlli</h2>
             <hr style="width:100px;height:8px;border:5px solid white;border-radius:10px;background-color:#2ECC71">
             <div class="mdl-card mdl-shadow--8dp" style="border-radius:20px;padding:20px;width:100%;min-height:300px;">
-              <div style="text-align:center">
-                <button class="style-special-button" style="width:70%;">NUOVO CONTROLLO</button>
-              </div>
+              <?php include $_SESSION['curieInclude'] ?>
             </div>
           </div>
           <div class="mdl-cell mdl-cell--1-col"></div>
