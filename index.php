@@ -26,8 +26,8 @@
           <div class="mdl-layout-spacer"></div>
           <nav class="mdl-navigation">
             <a class="mdl-navigation__link style-text-green" href="core/logout.php">Home</a>
-            <a class="mdl-navigation__link style-text-green" onclick="redirectLogin()" style="cursor:pointer">Login</a>
             <a class="mdl-navigation__link style-text-green" href="">Progetto</a>
+            <a class="mdl-navigation__link style-text-green" onclick="redirectLogin()" style="cursor:pointer">Login</a>
           </nav>
         </div>
       </header>

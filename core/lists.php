@@ -1,5 +1,5 @@
 <div style="text-align:center">
-  <button class="style-special-button" style="width:70%;">NUOVO CONTROLLO</button>
+  <button class="style-special-button" style="width:70%;" onclick="location.href='newReport.php'">NUOVO CONTROLLO</button>
 </div>
 <div>
   <form action="core/search.php" method="POST" style="text-align:center">
