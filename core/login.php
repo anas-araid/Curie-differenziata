@@ -30,35 +30,20 @@
 </form>
 <?php
   if(isset($_POST['password'])){
-    include 'core/functions.php';
     // text_filter l'input
     $id = text_filter($_POST["operatore"]);
     // md5 della password
     $password = text_filter_encrypt($_POST["password"]);
-    $selectQuery = "SELECT * FROM t_operatori WHERE ID='$id' AND Password='$password'";
-    $select = mysqli_query($db_conn, $selectQuery);
-    if ($select==null){
-      die('error');
-        //throw new exception ("Impossibile aggiornare l'utente");
-    }
-    $esistenzaUtente = false;
-    while($ris = mysqli_fetch_array ($select, MYSQLI_ASSOC)){
-      $esistenzaUtente = true;
-      //$_SESSION['include'] = ' ';
-      $operatore = getOperatore($id, $db_conn);
-      $_SESSION['ID'] = $operatore['ID'];
-      $_SESSION['Nome'] = $operatore['Nome'];
-      $_SESSION['Cognome'] = $operatore['Cognome'];
-      $_SESSION['Codice'] = $operatore['Codice'];
-      echo "
-      <script>
-      flatAlert('Accesso eseguito con successo', '', 'success', 'core/log.php');
-      </script>";
-    }
+    $esistenzaUtente = checkPassword($id, $password, $db_conn);
     if (!$esistenzaUtente){
       echo "
       <script>
       flatAlert('Password errata', '', 'error', 'index.php');
+      </script>";
+    }else{
+      echo "
+      <script>
+      flatAlert('Accesso eseguito con successo', '', 'success', 'core/log.php');
       </script>";
     }
 

@@ -1,4 +1,5 @@
 <?php
+  include 'core/functions.php';
   function getOperatore($ID, $db_conn){
     $operatore = array();
     if ($ID == null){
@@ -50,6 +51,25 @@
       }
     }
     return $controlli;
+  }
+  function checkPassword($id, $password, $db_conn){
+    $selectQuery = "SELECT * FROM t_operatori WHERE ID='$id' AND Password='$password'";
+    $select = mysqli_query($db_conn, $selectQuery);
+    if ($select==null){
+      die('error');
+        //throw new exception ("Impossibile aggiornare l'utente");
+    }
+    $esistenzaUtente = false;
+    while($ris = mysqli_fetch_array ($select, MYSQLI_ASSOC)){
+      $esistenzaUtente = true;
+      //$_SESSION['include'] = ' ';
+      $operatore = getOperatore($id, $db_conn);
+      $_SESSION['ID'] = $operatore['ID'];
+      $_SESSION['Nome'] = $operatore['Nome'];
+      $_SESSION['Cognome'] = $operatore['Cognome'];
+      $_SESSION['Codice'] = $operatore['Codice'];
+    }
+    return $esistenzaUtente;
   }
 
 ?>
