@@ -1,5 +1,5 @@
 <?php
-  include 'core/functions.php';
+  include 'functions.php';
   function getOperatore($ID, $db_conn){
     $operatore = array();
     if ($ID == null){
@@ -103,7 +103,7 @@
     if ($idClasse == null){
       $sql = "SELECT * FROM t_classi ".$query;
     }else{
-      $sql = "SELECT * FROM t_classi WHERE (ID='$IdClasse')";
+      $sql = "SELECT * FROM t_classi WHERE (ID='$idClasse')";
     }
     $risultato = mysqli_query($db_conn, $sql);
     if ($risultato == false){
