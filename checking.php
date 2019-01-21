@@ -57,7 +57,7 @@
                   echo "
                     <script>
                       window.onload = function(){
-                        flatAlertClose('Accesso', 'Impossibile connettersi al database', 'error');
+                        flatAlert('Accesso', 'Impossibile connettersi al database', 'error', '404.php');
                       }
                     </script>";
                 }

@@ -37,7 +37,7 @@ A rating system, that allow the school to check the recycle situation in classro
 
 ### Guidelines
 
-Take a moment to read this document in order to make the process simple and consistent with the one used by the rest of the contributor.
+Take a moment to read this document in order to make the process simple and consistent with the one used by the rest of the contributors.
 
 * Fork the project
 * Make a pull request
@@ -50,7 +50,7 @@ The final user is the school operator that will provide the checking and rating,
 #### Some coding standards
 
 * In style.css every class must start with _style-classname_
-* Every php function file must be saved in core/ directory 
+* Every php function file must be saved in core/ directory
 
 #### Entities
 
