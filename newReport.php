@@ -74,7 +74,7 @@
                     <script>
                       function updateIndirizzi(){
                         var select = document.getElementById("indirizzo").value;
-                        if (select == 1){
+                        if (select == 0){
                             window.location.href= '?key=""'
                         }else{
                           window.location.href= '?key=' + select;
@@ -83,6 +83,7 @@
                     </script>
                     <select class="mdl-textfield__input" id="indirizzo" name="indirizzo" required="" style="outline:none" onchange="updateIndirizzi()">
                       <?php
+                        echo "<option value='0'>----</option>";
                         // inserisco nel menu a tendina tutti gli indirizzi nel database
                         $indirizzi = getIndirizzi(null, $db_conn);
                         $indirizzoSelezionato = "";
@@ -102,7 +103,7 @@
                     <label class="mdl-textfield__label" for="indirizzo">Indirizzo</label>
                   </div>
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <select class="mdl-textfield__input" id="classe" name="classe" required="" style="outline:none">
+                    <select class="mdl-textfield__input" id="classe" name="classe" style="outline:none">
                       <?php
                         if (isset($_GET['key'])){
                           $key = $_GET['key'];
@@ -110,7 +111,7 @@
                           // inserisco nel menu a tendina tutte le classi relative all'indirizzo selezionato
                           $classi = getClasse(null, $key, $db_conn);
                           for ($i=0; $i < count($classi); $i++){
-                            echo "<option value='".$classi[$i][0]."'>".$classi[$i][1]." ".$classi[$i][2]."</option>";
+                            echo "<option value='".$classi[$i][0]."'>".$classi[$i][1]."</option>";
                           }
                         }
                       ?>

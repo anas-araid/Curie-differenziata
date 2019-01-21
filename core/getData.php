@@ -98,12 +98,12 @@
     $classi = array();
     $query = "";
     if ($idIndirizzo != null){
-      $query = " WHERE FK_Indirizzo=".$idIndirizzo;
+      $query = "WHERE FK_Indirizzo='".$idIndirizzo."'";
     }
     if ($idClasse == null){
-      $sql = "SELECT * FROM t_classe".$query;
+      $sql = "SELECT * FROM t_classi ".$query;
     }else{
-      $sql = "SELECT * FROM t_classe WHERE (ID='$IdClasse')";
+      $sql = "SELECT * FROM t_classi WHERE (ID='$IdClasse')";
     }
     $risultato = mysqli_query($db_conn, $sql);
     if ($risultato == false){
