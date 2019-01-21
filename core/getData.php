@@ -71,5 +71,55 @@
     }
     return $esistenzaUtente;
   }
-
+  function getIndirizzi($ID, $db_conn){
+    $indirizzi = array();
+    if ($ID == null){
+      $sql = "SELECT * FROM t_indirizzi";
+    }else{
+      $sql = "SELECT * FROM t_indirizzi WHERE (ID='$ID')";
+    }
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      if($ID == null){
+        $indirizzi["$i"] = array($ris['ID'], $ris['Descrizione']);
+        $i++;
+      }else{
+        $indirizzi['ID'] = $ris['ID'];
+        $indirizzi['Descrizione'] = $ris['Descrizione'];
+      }
+    }
+    return $indirizzi;
+  }
+  function getClasse($idClasse, $idIndirizzo, $db_conn){
+    $classi = array();
+    $query = "";
+    if ($idIndirizzo != null){
+      $query = " WHERE FK_Indirizzo=".$idIndirizzo;
+    }
+    if ($idClasse == null){
+      $sql = "SELECT * FROM t_classe".$query;
+    }else{
+      $sql = "SELECT * FROM t_classe WHERE (ID='$IdClasse')";
+    }
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      if($idClasse == null){
+        $classi["$i"] = array($ris['ID'], $ris['Classe'], $ris['FK_Indirizzo']);
+        $i++;
+      }else{
+        $classi['ID'] = $ris['ID'];
+        $classi['Classe'] = $ris['Classe'];
+        $classi['FK_Indirizzo'] = $ris['FK_Indirizzo'];
+      }
+    }
+    return $classi;
+  }
 ?>

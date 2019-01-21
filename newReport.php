@@ -2,6 +2,7 @@
   <head>
     <?php
       include "core/_header.php";
+      include 'core/getData.php';
       session_start();
       try{
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -65,8 +66,63 @@
               ?>
             <h2 class="style-text-grey">Nuovo</h2>
             <hr style="width:100px;height:8px;border:5px solid white;border-radius:10px;background-color:#2ECC71">
-            <div class="mdl-card mdl-shadow--8dp" style="border-radius:20px;padding:20px;width:100%;min-height:300px;">
-              
+            <div class="mdl-card mdl-shadow--8dp" style="border-radius:20px;padding:20px;width:100%;min-height:300px;text-align:center">
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--1-col"></div>
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <script>
+                      function updateIndirizzi(){
+                        var select = document.getElementById("indirizzo").value;
+                        if (select == 1){
+                            window.location.href= '?key=""'
+                        }else{
+                          window.location.href= '?key=' + select;
+                        }
+                      }
+                    </script>
+                    <select class="mdl-textfield__input" id="indirizzo" name="indirizzo" required="" style="outline:none" onchange="updateIndirizzi()">
+                      <?php
+                        // inserisco nel menu a tendina tutti gli indirizzi nel database
+                        $indirizzi = getIndirizzi(null, $db_conn);
+                        $indirizzoSelezionato = "";
+                        if (isset($_GET['key'])){
+                          $key = $_GET['key'];
+                          $indirizzoSelezionato = $key;
+                        }
+                        for ($i=0; $i < count($indirizzi); $i++){
+                          $selected = "";
+                          if ($indirizzoSelezionato == $indirizzi[$i][0]){
+                            $selected = "selected";
+                          }
+                          echo "<option value='".$indirizzi[$i][0]."' ".$selected.">".$indirizzi[$i][1]."</option>";
+                        }
+                      ?>
+                    </select>
+                    <label class="mdl-textfield__label" for="indirizzo">Indirizzo</label>
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <select class="mdl-textfield__input" id="classe" name="classe" required="" style="outline:none">
+                      <?php
+                        if (isset($_GET['key'])){
+                          $key = $_GET['key'];
+                          //echo "<script>document.getElementById('classe').disabled = 'false';</script>";
+                          // inserisco nel menu a tendina tutte le classi relative all'indirizzo selezionato
+                          $classi = getClasse(null, $key, $db_conn);
+                          for ($i=0; $i < count($classi); $i++){
+                            echo "<option value='".$classi[$i][0]."'>".$classi[$i][1]." ".$classi[$i][2]."</option>";
+                          }
+                        }
+                      ?>
+                    </select>
+                    <label class="mdl-textfield__label" for="classe">Classe</label>
+                  </div>
+                  <div style="text-align:center">
+                    <button class="style-special-button" style="width:60%;" onclick="location.href='newReport.php'">AVANTI</button>
+                    <button class="style-special-button" style="width:60%;" onclick="location.href='checking.php?back=true'">INDIETRO</button>
+                  </div>
+                </div>
+              <div class="mdl-cell mdl-cell--1-col"></div>
             </div>
           </div>
           <div class="mdl-cell mdl-cell--1-col"></div>
