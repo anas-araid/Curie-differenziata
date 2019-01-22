@@ -122,4 +122,27 @@
     }
     return $classi;
   }
+  function getTipologieCestini($ID, $db_conn){
+    $tipologie = array();
+    if ($ID == null){
+      $sql = "SELECT * FROM t_tipologie";
+    }else{
+      $sql = "SELECT * FROM t_tipologie WHERE (ID='$ID')";
+    }
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      if($ID == null){
+        $tipologie["$i"] = array($ris['ID'], $ris['Descrizione']);
+        $i++;
+      }else{
+        $tipologie['ID'] = $ris['ID'];
+        $tipologie['Descrizione'] = $ris['Descrizione'];
+      }
+    }
+    return $tipologie;
+  }
 ?>

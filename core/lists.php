@@ -59,7 +59,6 @@
             </script>";
           }
         }
-        include "core/getData.php";
         $list = getControlli(null, $db_conn);
         for ($i=0; $i < count($list); $i++){
           $checkingExists = true;

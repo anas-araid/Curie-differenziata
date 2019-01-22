@@ -9,6 +9,7 @@
         //error_reporting(0);
         // inclusione del file per la connessione al database
         include "core/dbConnection.php";
+        include "core/getData.php";
         // se la session non esiste, allora integra i contolli al layout
         if (!$_SESSION['curieInclude']){
           $_SESSION = array();
