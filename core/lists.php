@@ -41,7 +41,7 @@
         <th>Data</th>
         <th>Operatore</th>
         <th>Classe</th>
-        <th>Media Voti</th>
+        <th>Media Valutazioni</th>
         <th></th>
         <th></th
       </tr>
