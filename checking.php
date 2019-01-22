@@ -31,8 +31,9 @@
           <div class="mdl-layout-spacer"></div>
           <nav class="mdl-navigation">
             <a class="mdl-navigation__link style-text-green" href="core/logout.php">Home</a>
-            <a class="mdl-navigation__link style-text-green" href="">Progetto</a>
+            <a class="mdl-navigation__link style-text-green" href="checking.php?back=true">Controlli</a>
             <a class="mdl-navigation__link style-text-green" href="core/logout.php" style="cursor:pointer">Logout</a>
+            <a class="mdl-navigation__link style-text-green" href="">Progetto</a>
           </nav>
         </div>
       </header>
@@ -40,6 +41,7 @@
         <span class="mdl-layout-title style-text-green" style="font-weight:500">Curie</span><span class="mdl-layout-title style-text-grey" style="font-weight:100">Differenziata</span>
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="core/logout.php">Home</a>
+          <a class="mdl-navigation__link" href="checking.php?back=true">Controlli</a>
           <a class="mdl-navigation__link" href="core/logout.php" style="cursor:pointer">Logout</a>
           <a class="mdl-navigation__link" href="">Progetto</a>
         </nav>

@@ -36,8 +36,11 @@
           <br>
           <br>
           <br>
-          <button class="style-special-button" style="width:50%;" onclick="">CARICA FOTO</button>
-          <button class="style-special-button" style="width:50%;" onclick="">SCATTA FOTO</button>
+          <!-- Un modo artigianale per personalizzare il bottone carica foto -->
+          <input hidden id='<?php echo "carica_".$idTipologia ?>' type="file" accept="image/*"></input>
+          <button class="style-special-button" style="width:50%;" onclick="document.getElementById('<?php echo "carica_".$idTipologia ?>').click();">CARICA FOTO</button>
+          <input hidden id="<?php echo "foto_".$idTipologia ?>" type="file" capture="camera" accept="image/*"></input>
+          <button class="style-special-button" style="width:50%;" onclick="document.getElementById('<?php echo "foto_".$idTipologia ?>').click();">SCATTA FOTO</button>
         </div>
       </div>
       <?php
