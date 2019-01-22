@@ -26,6 +26,10 @@
     include "dbConnection.php";
     include "getData.php";
     $IdIndirizzo = text_filter($_POST['indirizzo']);
+    if ($IdIndirizzo == 0){
+      echo "<script>flatAlert('Attenzione', 'Inserisci un indirizzo', 'warning', '../newReport.php')</script>";
+      return;
+    }
     $IdClasse = text_filter($_POST['classe']);
     $indirizzo = getIndirizzi($IdIndirizzo, $db_conn);
     $_SESSION['IdIndirizzo'] = $indirizzo['ID'];
@@ -36,12 +40,15 @@
       $classe = getClasse(null, $IdIndirizzo, $db_conn);
       if ($classe != null){
         echo "<script>flatAlert('Attenzione', 'Inserisci la classe', 'warning', '../newReport.php?key=".$IdIndirizzo."')</script>";
+        return;
       }
     }else{
       $classe = getClasse($IdClasse, $IdIndirizzo, $db_conn);
       $_SESSION['IdClasse'] = $classe['ID'];
       $_SESSION['Classe'] = $classe['Classe'];
     }
+    $_SESSION['curieInclude'] = "core/recycleBin.php";
+    header("location:../checking.php");
    ?>
  </body>
 </html>

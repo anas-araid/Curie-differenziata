@@ -6,8 +6,8 @@
       try{
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         // error_reporting per togliere il notice quando non trova isLogged
-        // error_reporting(0);
-        // inclusoine del file per la connessione al database
+        //error_reporting(0);
+        // inclusione del file per la connessione al database
         include "core/dbConnection.php";
         // se la session non esiste, allora integra i contolli al layout
         if (!$_SESSION['curieInclude']){
