@@ -33,7 +33,7 @@
             <a class="mdl-navigation__link style-text-green" href="core/logout.php">Home</a>
             <a class="mdl-navigation__link style-text-green" href="checking.php?back=true">Controlli</a>
             <a class="mdl-navigation__link style-text-green" href="core/logout.php" style="cursor:pointer">Logout</a>
-            <a class="mdl-navigation__link style-text-green" href="">Progetto</a>
+            <a class="mdl-navigation__link style-text-green" href="https://github.com/asdf1899/Curie-differenziata">Progetto</a>
           </nav>
         </div>
       </header>
@@ -43,7 +43,7 @@
           <a class="mdl-navigation__link" href="core/logout.php">Home</a>
           <a class="mdl-navigation__link" href="checking.php?back=true">Controlli</a>
           <a class="mdl-navigation__link" href="core/logout.php" style="cursor:pointer">Logout</a>
-          <a class="mdl-navigation__link" href="">Progetto</a>
+          <a class="mdl-navigation__link" href="https://github.com/asdf1899/Curie-differenziata">Progetto</a>
         </nav>
       </div>
       <main class="mdl-layout__content">

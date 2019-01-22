@@ -26,7 +26,7 @@
           <div class="mdl-layout-spacer"></div>
           <nav class="mdl-navigation">
             <a class="mdl-navigation__link style-text-green" href="core/logout.php">Home</a>
-            <a class="mdl-navigation__link style-text-green" href="">Progetto</a>
+            <a class="mdl-navigation__link style-text-green" href="https://github.com/asdf1899/Curie-differenziata">Progetto</a>
             <a class="mdl-navigation__link style-text-green" onclick="redirectLogin()" style="cursor:pointer">Login</a>
           </nav>
         </div>
@@ -36,7 +36,7 @@
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="core/logout.php">Home</a>
           <a class="mdl-navigation__link" onclick="redirectLogin()" style="cursor:pointer">Login</a>
-          <a class="mdl-navigation__link" href="">Progetto</a>
+          <a class="mdl-navigation__link" href="https://github.com/asdf1899/Curie-differenziata">Progetto</a>
         </nav>
       </div>
       <main class="mdl-layout__content" style="margin:0">
