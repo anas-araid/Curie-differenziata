@@ -66,8 +66,9 @@ body, h1, h2, h3, h4, h5, h6, p, a, span{
     overflow:hidden;
     white-space:nowrap;
     cursor:pointer;
-    font-size:30px;
+    font-size:40px;
     color:#ccc;
+    height: 70px;
 }
 .rate:not(:checked) > label:before {
     content: '★ ';
