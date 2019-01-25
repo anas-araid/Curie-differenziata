@@ -33,6 +33,8 @@
           <div style="text-align:center">
             <h1 class="style-text-grey">Errore</h1>
             <h5 class="style-text-grey">Contatta l'amministratore</h5>
+            <button class="style-special-button" onclick="location.href='core/logout.php'">Torna indietro</button>
+            <br>
             <img src="img/404.svg" style="max-width:45%"/></img>
           </div>
         </section>

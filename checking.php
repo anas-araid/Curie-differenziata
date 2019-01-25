@@ -78,9 +78,15 @@
           if ($_SESSION['curieInclude'] == "core/recycleBin.php"){
             echo '
             <script>var salva = "salva"</script>
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" style="position:fixed;bottom:40px;right:60px;z-index:2000;background:#2ECC71;" onclick="document.getElementById(salva).click()">
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"
+                    id="btn-add"
+                    style="position:fixed;bottom:60px;right:60px;z-index:2000;background:#2ECC71;box-shadow: 0 0px 19px 6px white;height:70px;width:70px;"
+                    onclick="document.getElementById(salva).click()">
               <i class="material-icons" style="color:white">add</i>
-            </button>';
+            </button>
+            <div class="mdl-tooltip mdl-tooltip--large" for="btn-add">
+              Salva
+            </div>';
           }
 
          ?>
