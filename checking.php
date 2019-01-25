@@ -74,6 +74,16 @@
           </div>
           <div class="mdl-cell mdl-cell--1-col"></div>
         </section>
+        <?php
+          if ($_SESSION['curieInclude'] == "core/recycleBin.php"){
+            echo '
+            <script>var salva = "salva"</script>
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" style="position:fixed;bottom:40px;right:60px;z-index:2000;background:#2ECC71;" onclick="document.getElementById(salva).click()">
+              <i class="material-icons" style="color:white">add</i>
+            </button>';
+          }
+
+         ?>
         <footer style="background:url(img/bg.svg);background-repeat:no-repeat;background-size:cover;margin-bottom:0;bottom:0;height:200px;z-index:-2000">
           <br>
           <br>

@@ -5,6 +5,7 @@
     <button class="style-special-button" style="width:60%;" onclick="location.href=''">VALUTAZIONI PRECEDENTI</button>
   </div>
   <hr style="width:80%;display:inline-block"/>
+  <form method="post" action="">
   <?php
     $tipologieCestini = getTipologieCestini(null ,$db_conn);
     for ($i=0; $i < count($tipologieCestini); $i++){
@@ -41,13 +42,15 @@
           <button class="style-special-button" style="width:50%;" onclick="document.getElementById('<?php echo "carica_".$idTipologia ?>').click();">CARICA FOTO</button>
           <input hidden id="<?php echo "foto_".$idTipologia ?>" type="file" capture="camera" accept="image/*"></input>
           <button class="style-special-button" style="width:50%;" onclick="document.getElementById('<?php echo "foto_".$idTipologia ?>').click();">SCATTA FOTO</button>
+          <input hidden id="salva" type="submit">
         </div>
       </div>
       <?php
     }
   ?>
-
+  </form>
 </div>
+
 <script>
   function redirectIndietro(){
     location.href = "newReport.php?key=<?php echo $_SESSION['IdIndirizzo'] ?>";
