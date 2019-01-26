@@ -17,3 +17,4 @@
 <script src="js/tingle.js"></script>
 <script src="js/chart.js"></script>
 <script src="js/jquery.min.js"></script>
+<script src="js/pace.js"></script>
