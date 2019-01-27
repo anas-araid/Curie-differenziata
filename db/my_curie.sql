@@ -63,6 +63,20 @@ CREATE TABLE t_controlli (
 ) ENGINE = InnoDB;
 
 
+CREATE TABLE t_controlloCestino (
+  ID 		              BIGINT				NOT NULL 	AUTO_INCREMENT,
+  FK_Controllo        BIGINT,
+  FK_Cestino          BIGINT,
+  PRIMARY KEY(ID),
+  FOREIGN KEY(FK_Controllo)    REFERENCES t_controlli(ID)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  FOREIGN KEY(FK_Cestino)    REFERENCES t_cestini(ID)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+
 INSERT INTO t_tipologie (Descrizione) VALUES ('Imballaggi');
 INSERT INTO t_tipologie (Descrizione) VALUES ('Carta');
 INSERT INTO t_tipologie (Descrizione) VALUES ('Secco residuo');

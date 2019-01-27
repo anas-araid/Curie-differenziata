@@ -51,7 +51,7 @@
     }else{
       $valutazioni = $_SESSION['valutazioni'];
       $maxCestini = $_SESSION['maxCestini'];
-
+      print_r($valutazioni);
       // ... salvare tutte le robe nel db
 
       for ($i=0; $i < count($maxCestini); $i++){
