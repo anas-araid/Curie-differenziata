@@ -3,7 +3,7 @@
 </div>
 <div>
   <form action="core/search.php" method="POST" style="text-align:center">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:60%;">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:40%;">
       <input class="mdl-textfield__input style-gradient-text" style="border-bottom:1px solid #c5003e;color:grey" type="text" id="find" name="find" required="">
       <label class="mdl-textfield__label style-gradient-text" for="find">Cerca</label>
     </div>
