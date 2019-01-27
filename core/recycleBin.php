@@ -8,16 +8,26 @@
   <form method="post" action="core/saveBin.php" enctype="multipart/form-data">
   <?php
     if (isset($_GET['bin'])){
+      // $bin contiene l'id della tipologia di cestino
       $bin = $_GET['bin'];
+      // passo l'id alla funzione getTipologieCestini: se restituisce un array allora l'id esiste
       $tipologieCestini = getTipologieCestini($bin ,$db_conn);
+      // se non esiste la tipologia di cestino con id $bin allora reindirizza a checking.php
       if (empty($tipologieCestini)){
         echo "<script>location.href='checking.php'</script>";
         return;
       }else{
-        $_SESSION['idCestino'] = $bin;
-        $_SESSION['maxCestini'] = count(getTipologieCestini(null ,$db_conn));
+        // se esiste allora inserisco il'id nella sessione idTipologiaCestino
+        $_SESSION['idTipologiaCestino'] = $bin;
+        $idCestini = array();
+        $cestini = getTipologieCestini(null ,$db_conn);
+        for ($i=0; $i < count($cestini); $i++){
+          $idCestini[$i] = $cestini[$i][0];
+        }
+        $_SESSION['maxCestini'] = $idCestini;
       }
     }else{
+      // se $_GET[$bin] è vuoto allora stampa il primo cestino
       $tipologieCestini = getTipologieCestini(null ,$db_conn);
       if ($tipologieCestini != null){
         $url = 'checking.php?bin='.$tipologieCestini[0][0];
@@ -53,11 +63,12 @@
         <!-- Un modo artigianale per personalizzare il bottone carica foto -->
         <input hidden name='<?php echo "carica_".$idTipologia ?>' id='<?php echo "carica_".$idTipologia ?>' type="file" accept="image/*"></input>
         <input type="button" class="style-special-button" style="width:50%;" value="CARICA FOTO" onclick="document.getElementById('<?php echo "carica_".$idTipologia ?>').click();"></input>
-        <input hidden name='<?php echo "scatta_".$idTipologia ?>' id="<?php echo "foto_".$idTipologia ?>" type="file" capture="camera" accept="image/*"></input>
-        <input type="button" class="style-special-button" style="width:50%;" value="SCATTA FOTO" onclick="document.getElementById('<?php echo "foto_".$idTipologia ?>').click();"></input>
+        <input hidden name='<?php echo "scatta_".$idTipologia ?>' id="<?php echo "scatta_".$idTipologia ?>" type="file" capture="camera" accept="image/*"></input>
+        <input type="button" class="style-special-button" style="width:50%;" value="SCATTA FOTO" onclick="document.getElementById('<?php echo "scatta_".$idTipologia ?>').click();"></input>
       </div>
     </div>
     <?php
+    print_r($_SESSION['valutazioni']);
 
     ?>
     <button hidden name='salva' id="salva" type="submit">salva</button>
