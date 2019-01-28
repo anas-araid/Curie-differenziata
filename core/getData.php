@@ -40,15 +40,28 @@
     $i=0;
     while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
       if($ID == null){
-        $controlli["$i"] = array($ris['ID'], $ris['Data'], $ris['FK_Operatore'], $ris['FK_Cestino'], $ris['FK_Classe']);
+        $controlli["$i"] = array($ris['ID'], $ris['Data'], $ris['FK_Operatore'], $ris['FK_Classe']);
         $i++;
       }else{
         $controlli['ID'] = $ris['ID'];
         $controlli['Data'] = $ris['Data'];
         $controlli['FK_Operatore'] = $ris['FK_Operatore'];
-        $controlli['FK_Cestino'] = $ris['FK_Cestino'];
         $controlli['FK_Classe'] = $ris['FK_Classe'];
       }
+    }
+    return $controlli;
+  }
+  function getControlliByUserDate($Data, $FK_Operatore, $FK_Classe, $db_conn){
+    $controlli = array();
+    $sql = "SELECT * FROM t_controlli WHERE (Data='$Data' and FK_Operatore='$FK_Operatore' and FK_Classe='$FK_Classe')";
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      $controlli["$i"] = array($ris['ID'], $ris['Data'], $ris['FK_Operatore'], $ris['FK_Classe']);
+      $i++;
     }
     return $controlli;
   }
@@ -163,13 +176,14 @@
     $i=0;
     while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
       if($ID == null){
-        $cestini["$i"] = array($ris['ID'], $ris['Foto'], $ris['Valutazioni'], $ris['FK_Tipologia']);
+        $cestini["$i"] = array($ris['ID'], $ris['Foto'], $ris['Valutazioni'], $ris['FK_Tipologia'], $ris['FK_Controllo']);
         $i++;
       }else{
         $cestini['ID'] = $ris['ID'];
         $cestini['Foto'] = $ris['Foto'];
         $cestini['Valutazioni'] = $ris['Valutazioni'];
         $cestini['FK_Tipologia'] = $ris['FK_Tipologia'];
+        $cestini['FK_Controllo'] = $ris['FK_Controllo'];
       }
     }
     return $cestini;

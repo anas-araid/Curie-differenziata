@@ -1,5 +1,5 @@
 <div style="text-align:center;">
-  <h4><?php echo ($_SESSION['IdClasse'] != "") ? $_SESSION['Classe']." ".$_SESSION['TipoIndirizzo'] : $_SESSION['TipoIndirizzo']; ?></h4>
+  <h4><?php echo ($_SESSION['Classe'] != "--") ? $_SESSION['Classe']." ".$_SESSION['TipoIndirizzo'] : $_SESSION['TipoIndirizzo']; ?></h4>
   <div>
     <button class="style-special-button" style="width:60%;" onclick="redirectIndietro()">INDIETRO</button>
     <button class="style-special-button" style="width:60%;" onclick="location.href=''">VALUTAZIONI PRECEDENTI</button>

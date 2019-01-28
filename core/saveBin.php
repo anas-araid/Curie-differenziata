@@ -55,18 +55,20 @@
       $valutazioni = $_SESSION['valutazioni'];
       $maxCestini = $_SESSION['maxCestini'];
       //print_r($valutazioni);
+      $data = date('Y/m/d h:i', time());
+      addControllo($data, $_SESSION['ID'], $_SESSION['IdClasse'], $db_conn);
+      $controlli = getControlliByUserDate($data, $_SESSION['ID'], $_SESSION['IdClasse'], $db_conn);
       for ($i=0; $i < count($maxCestini); $i++){
         $idTipologia = $maxCestini[$i];
         $voto = $valutazioni[$idTipologia][1];
         $oldFile = '../uploads/'.session_id().'_'.$idTipologia.'.jpg';
-        echo "OldFile: ".$oldFile."\n ";
         do{
           $foto = uniqid().".jpg";
           $dir = 'uploads/'.$foto;
         }while (checkIfPhotoExist('../'.$dir, $db_conn));
         rename($oldFile, '../'.$dir);
-        echo $dir;
-        addCestino($dir, $voto, $idTipologia, $db_conn);
+
+        //addCestino($dir, $voto, $idTipologia, $db_conn);
       }
 
       /*for ($i=0; $i < count($maxCestini); $i++){
@@ -87,8 +89,8 @@
         updateCestino($idCestino, $foto, $voto, $idTipologia, $db_conn);
       }*/
       // libera le session per un altro controllo
-      $_SESSION['valutazioni'] = '';
-      $_SESSION['maxCestini'] = '';
+      $_SESSION['valutazioni'] = array();
+      $_SESSION['maxCestini'] = array();
       $_SESSION['idTipologiaCestino'] = '';
     }
   }

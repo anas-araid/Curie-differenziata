@@ -17,16 +17,6 @@ CREATE TABLE t_tipologie (
   PRIMARY KEY(ID)
 ) ENGINE = InnoDB;
 
-CREATE TABLE t_cestini (
-  ID 		           BIGINT				NOT NULL 	AUTO_INCREMENT,
-  Foto	 			     VARCHAR(50)  UNIQUE,
-  Valutazioni      BIGINT,
-  FK_Tipologia     BIGINT,
-  PRIMARY KEY(ID),
-  FOREIGN KEY(FK_Tipologia)    REFERENCES t_tipologie(ID)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION
-) ENGINE = InnoDB;
 
 CREATE TABLE t_indirizzi (
   ID 		           BIGINT				NOT NULL 	AUTO_INCREMENT,
@@ -55,7 +45,7 @@ CREATE TABLE t_classi (
 
 CREATE TABLE t_controlli (
   ID 		           BIGINT				NOT NULL 	AUTO_INCREMENT,
-  Data      	 		 DATE,
+  Data      	 		 DATETIME,
   FK_Operatore 		 BIGINT,
   FK_Classe    		 BIGINT,
   PRIMARY KEY(ID),
@@ -67,19 +57,21 @@ CREATE TABLE t_controlli (
   ON UPDATE NO ACTION
 ) ENGINE = InnoDB;
 
-
-CREATE TABLE t_controlloCestino (
-  ID 		              BIGINT				NOT NULL 	AUTO_INCREMENT,
-  FK_Controllo        BIGINT,
-  FK_Cestino          BIGINT,
+CREATE TABLE t_cestini (
+  ID 		           BIGINT				NOT NULL 	AUTO_INCREMENT,
+  Foto	 			     VARCHAR(50)  UNIQUE,
+  Valutazioni      BIGINT,
+  FK_Tipologia     BIGINT,
+  FK_Controllo     BIGINT,
   PRIMARY KEY(ID),
+  FOREIGN KEY(FK_Tipologia)    REFERENCES t_tipologie(ID)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
   FOREIGN KEY(FK_Controllo)    REFERENCES t_controlli(ID)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  FOREIGN KEY(FK_Cestino)    REFERENCES t_cestini(ID)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
 ) ENGINE = InnoDB;
+
 
 
 INSERT INTO t_operatori (Nome, Cognome, Codice, Password) VALUES ('Mario', 'Rossi', '001', '5f4dcc3b5aa765d61d8327deb882cf99');
@@ -139,6 +131,7 @@ INSERT INTO t_sezioni (Descrizione) VALUES ('5A'); /* 17 */
 INSERT INTO t_sezioni (Descrizione) VALUES ('5B'); /* 18 */
 INSERT INTO t_sezioni (Descrizione) VALUES ('5C'); /* 19 */
 INSERT INTO t_sezioni (Descrizione) VALUES ('5D'); /* 20 */
+INSERT INTO t_sezioni (Descrizione) VALUES ('--'); /* 21 */
 
 
 /* THE FOLLOWING insert SHOULD BE EXECUTED ONLY IF t_indirizzi WERE EXECUTED IN THAT ORDER */
@@ -231,13 +224,32 @@ INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 10, 9);
 INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 14, 9);
 INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 18, 9);
 
-INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 9, 9); /* ID 10 è Amministazione Finanza e Marketing*/
-INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 13, 9);
-INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 17, 9);
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 9, 10); /* ID 10 è Amministazione Finanza e Marketing*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 13, 10);
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 17, 10);
 
-INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 10, 9);
-INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 14, 9);
-INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 18, 9);
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 10, 10);
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 14, 10);
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 18, 10);
+
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 11); /* ID 11 Didattica*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 12); /* ID 12 Biblioteca*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 13); /* ID 13 Sala tecnici*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 14); /* ID 14 Ufficio Amministazione*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 15); /* ID 15 Vicepresidenza*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 16); /* ID 16 Ufficio preside*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 17); /* ID 17 Laboratorio Tecnologico*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 18); /* ID 18 Laboratorio di chimica*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 19); /* ID 19 Laboratorio di fisica*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 20); /* ID 20 Laboratorio 1*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 21); /* ID 21 Laboratorio 2*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 22); /* ID 22 Laboratorio 3*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 23); /* ID 23 Laboratorio 4*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 24); /* ID 24 Laboratorio 5*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 25); /* ID 25 Laboratorio 6*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 26); /* ID 26 Laboratorio 7*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 27); /* ID 27 Aula magna*/
+INSERT INTO t_classi (FK_Sezione, FK_Indirizzo) VALUES ( 21, 28); /* ID 28 Sala udienze*/
 
 
 
