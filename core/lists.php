@@ -41,7 +41,6 @@
         <th>Data</th>
         <th>Operatore</th>
         <th>Classe</th>
-        <th>Media Valutazioni</th>
         <th></th>
         <th></th
       </tr>
@@ -62,14 +61,17 @@
         $list = getControlli(null, $db_conn);
         for ($i=0; $i < count($list); $i++){
           $checkingExists = true;
+          $operatore = getOperatore($list[$i][2], $db_conn);
+          $classe = getClasse($list[$i][3], null, $db_conn);
+          $indirizzo = getIndirizzi($classe['FK_Indirizzo'], $db_conn);
+          $sezione = getSezioni($classe['FK_Sezione'], $db_conn);
           echo '<tr>
-              <td>'.date('d-m-Y', strtotime($list[$i]['Data'])).'</td>
-              <td>'.$list[$i]['FK_Operatore'].'</td>
-              <td>'.$list[$i]['FK_Cestino'].'</td>
-              <td>'.$list[$i]['FK_Classe'].'</td>
-              <td><a href="showReport.php?id='.$ris['ID'].'">Dettagli</a></td>
-              <td><a href="editReport.php?id='.$ris['ID'].'">Modifica</a></td>
-              <td><a href="#" onclick="alertDeleteReport('.$ris['ID'].')" style="color:red">Elimina</a></td>
+              <td>'.date('d-m-Y', strtotime($list[$i][1])).'</td>
+              <td>'.$operatore['Nome'].' '.$operatore['Cognome'].'</td>
+              <td>'.$sezione['Descrizione'].' '.$indirizzo['Descrizione'].'</td>
+              <td><a href="showReport.php?id='.$list[$i][0].'">Dettagli</a></td>
+              <td><a href="editReport.php?id='.$list[$i][0].'">Modifica</a></td>
+              <td><a href="#" onclick="alertDeleteReport('.$list[$i][0].')" style="color:red">Elimina</a></td>
             </tr>';
         }
        ?>

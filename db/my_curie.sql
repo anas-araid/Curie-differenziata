@@ -59,7 +59,7 @@ CREATE TABLE t_controlli (
 
 CREATE TABLE t_cestini (
   ID 		           BIGINT				NOT NULL 	AUTO_INCREMENT,
-  Foto	 			     VARCHAR(50)  UNIQUE,
+  Foto	 			     VARCHAR(50),
   Valutazioni      BIGINT,
   FK_Tipologia     BIGINT,
   FK_Controllo     BIGINT,

@@ -64,11 +64,14 @@
         $oldFile = '../uploads/'.session_id().'_'.$idTipologia.'.jpg';
         do{
           $foto = uniqid().".jpg";
-          $dir = 'uploads/'.$foto;
-        }while (checkIfPhotoExist('../'.$dir, $db_conn));
-        rename($oldFile, '../'.$dir);
-
-        //addCestino($dir, $voto, $idTipologia, $db_conn);
+          $newFoto = 'uploads/'.$foto;
+        }while (checkIfPhotoExist('../'.$newFoto, $db_conn));
+        if (file_exists($oldFile)){
+          rename($oldFile, '../'.$newFoto);
+        }else{
+          $newFoto = '';
+        }
+        addCestino($newFoto, $voto, $idTipologia, $controlli[0][0], $db_conn);
       }
 
       /*for ($i=0; $i < count($maxCestini); $i++){
