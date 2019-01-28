@@ -115,7 +115,7 @@
                             // inserisco nel menu a tendina tutte le classi relative all'indirizzo selezionato
                             $classi = getClasse(null, $key, $db_conn);
                             for ($i=0; $i < count($classi); $i++){
-                              echo "<option value='".$classi[$i][0]."'>".$classi[$i][1]."</option>";
+                              echo "<option value='".$classi[$i][0]."'>".getSezioni($classi[$i][1], $db_conn)['Descrizione']."</option>";
                             }
                           }
                         ?>

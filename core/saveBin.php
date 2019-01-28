@@ -1,6 +1,9 @@
 <?php
   include "dbConnection.php";
   include "getData.php";
+  include "addData.php";
+  include "updateData.php";
+
   session_start();
   if (in_array($_SESSION['idTipologiaCestino'], $_SESSION['maxCestini'])){
     if (isset($_POST["salva"])){
@@ -36,7 +39,7 @@
     // salvo temporaneamente le foto
     $tempValutazione = $_SESSION['valutazioni'];
     $tempRawImage = $tempValutazione[$_SESSION['idTipologiaCestino']][2];
-    $tempFile = $tempValutazione[$_SESSION['idTipologiaCestino']][0].'.jpg';
+    $tempFile = session_id().'_'.$tempValutazione[$_SESSION['idTipologiaCestino']][0].'.jpg';
     $dir = "../uploads/".$tempFile;
     if (!move_uploaded_file($tempRawImage, $dir)){
       //echo "Impossibile caricare l'immagine ";
@@ -51,21 +54,42 @@
     }else{
       $valutazioni = $_SESSION['valutazioni'];
       $maxCestini = $_SESSION['maxCestini'];
-      print_r($valutazioni);
-      // ... salvare tutte le robe nel db
-
+      //print_r($valutazioni);
       for ($i=0; $i < count($maxCestini); $i++){
-        $oldFile = '../uploads/'.$maxCestini[$i].'.jpg';
-        // '1_' sarebbe l'id del cestino che va salvato nel db
-        $newFile = '../uploads/'.'1_'.$maxCestini[$i].'.jpg';
-        rename($oldFile, $newFile);
-
-        // libera le session per un altro controllo
-        //$_SESSION['valutazioni'] = '';
-        //$_SESSION['maxCestini'] = '';
-        //$_SESSION['idTipologiaCestino'] = '';
+        $idTipologia = $maxCestini[$i];
+        $voto = $valutazioni[$idTipologia][1];
+        $oldFile = '../uploads/'.session_id().'_'.$idTipologia.'.jpg';
+        echo "OldFile: ".$oldFile."\n ";
+        do{
+          $foto = uniqid().".jpg";
+          $dir = 'uploads/'.$foto;
+        }while (checkIfPhotoExist('../'.$dir, $db_conn));
+        rename($oldFile, '../'.$dir);
+        echo $dir;
+        addCestino($dir, $voto, $idTipologia, $db_conn);
       }
 
+      /*for ($i=0; $i < count($maxCestini); $i++){
+        // $cestino => Array ( [ID] => 1 [Foto] => [Valutazioni] => 2 [FK_Tipologia] => 1 )
+        $cestino = getCestino(null, $maxCestini[$i], $db_conn);
+        // ERRORE GRAVE FACENDO COSI SI PRENDONO I PRIMI CESTINI CON QUELLI ID CHE POTREBBERO ESSERE INFINITE
+        // BISOGNA TROVARE UN MODO PER RENDERE IL NOME DELLA FOTO UNIVOCO
+        $idCestino = $cestino[0][0];
+        $idTipologia = $maxCestini[$i];
+        $voto = $valutazioni[$idTipologia][1];
+        print_r($cestino);
+        echo 'maxCestini: '.$idTipologia;
+        echo "cestino: ".$idCestino."\n";
+        $oldFile = '../uploads/'.session_id().'_'.$idTipologia.'.jpg';
+        $newFile = '../uploads/'.$idCestino.'.jpg';
+        rename($oldFile, $newFile);
+        $foto = 'uploads/'.$idCestino.'.jpg';
+        updateCestino($idCestino, $foto, $voto, $idTipologia, $db_conn);
+      }*/
+      // libera le session per un altro controllo
+      $_SESSION['valutazioni'] = '';
+      $_SESSION['maxCestini'] = '';
+      $_SESSION['idTipologiaCestino'] = '';
     }
   }
 

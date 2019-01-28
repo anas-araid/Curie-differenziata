@@ -45,7 +45,7 @@
     }else{
       $classe = getClasse($IdClasse, $IdIndirizzo, $db_conn);
       $_SESSION['IdClasse'] = $classe['ID'];
-      $_SESSION['Classe'] = $classe['Classe'];
+      $_SESSION['Classe'] = getSezioni($classe['FK_Sezione'], $db_conn)['Descrizione'];
     }
     $_SESSION['curieInclude'] = "core/recycleBin.php";
     header("location:../checking.php");

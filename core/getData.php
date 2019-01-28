@@ -112,11 +112,11 @@
     $i=0;
     while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
       if($idClasse == null){
-        $classi["$i"] = array($ris['ID'], $ris['Classe'], $ris['FK_Indirizzo']);
+        $classi["$i"] = array($ris['ID'], $ris['FK_Sezione'], $ris['FK_Indirizzo']);
         $i++;
       }else{
         $classi['ID'] = $ris['ID'];
-        $classi['Classe'] = $ris['Classe'];
+        $classi['FK_Sezione'] = $ris['FK_Sezione'];
         $classi['FK_Indirizzo'] = $ris['FK_Indirizzo'];
       }
     }
@@ -144,5 +144,68 @@
       }
     }
     return $tipologie;
+  }
+  function getCestino($ID, $FK_Tipologia, $db_conn){
+    $cestini = array();
+    $query = "";
+    if ($FK_Tipologia != null){
+      $query = "WHERE FK_Tipologia='".$FK_Tipologia."'";
+    }
+    if ($ID == null){
+      $sql = "SELECT * FROM t_cestini ".$query;
+    }else{
+      $sql = "SELECT * FROM t_cestini WHERE (ID='$ID')";
+    }
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      if($ID == null){
+        $cestini["$i"] = array($ris['ID'], $ris['Foto'], $ris['Valutazioni'], $ris['FK_Tipologia']);
+        $i++;
+      }else{
+        $cestini['ID'] = $ris['ID'];
+        $cestini['Foto'] = $ris['Foto'];
+        $cestini['Valutazioni'] = $ris['Valutazioni'];
+        $cestini['FK_Tipologia'] = $ris['FK_Tipologia'];
+      }
+    }
+    return $cestini;
+  }
+  function checkIfPhotoExist ($foto, $db_conn){
+    $sql = "SELECT * FROM t_cestini WHERE (Foto='$foto')";
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      return false;
+    }
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      return true;
+    }
+    return false;
+  }
+  function getSezioni($ID, $db_conn){
+    $sezioni = array();
+    if ($ID == null){
+      $sql = "SELECT * FROM t_sezioni";
+    }else{
+      $sql = "SELECT * FROM t_sezioni WHERE (ID='$ID')";
+    }
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      if($ID == null){
+        $sezioni["$i"] = array($ris['ID'], $ris['Descrizione']);
+        $i++;
+      }else{
+        $sezioni['ID'] = $ris['ID'];
+        $sezioni['Descrizione'] = $ris['Descrizione'];
+      }
+    }
+    return $sezioni;
   }
 ?>
