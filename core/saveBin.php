@@ -1,3 +1,18 @@
+<html>
+  <head>
+    <title>Curie Differenziata</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="theme-color" content="#FFFFFF">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Anas Araid">
+    <link type="text/css" rel="stylesheet" href="../css/reset.css" />
+    <link type="text/css" rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/font-quicksand.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <script src="../js/script.js"></script>
+    <script src="../js/sweetalert.js"></script>
+  </head>
+  <body>
 <?php
   include "dbConnection.php";
   include "getData.php";
@@ -26,7 +41,6 @@
     }
   }
   // ##############################################################################################################################
-  // @@@@@@@@@@@@@@@@ LE FOTO DEVONO ESSERE SALVATE DOPO L INSERT DEI DATI COSI SI HA L ID DEL CESTINO @@@@@@@@@@@@@@@@
   // $valutazioni
   // Array ( [idTipologiaCestino] => Array ( [idTipologiaCestino] => 1 [Voto] => 1 [TempImage] => xampp\tmp\phpE0A1.tmp )
   // $valutazioni[$_SESSION['maxCestini'][$i]][0] ---> restituisce gli id della tipologia di cestini
@@ -55,7 +69,7 @@
       $valutazioni = $_SESSION['valutazioni'];
       $maxCestini = $_SESSION['maxCestini'];
       //print_r($valutazioni);
-      $data = date('Y/m/d h:i', time());
+      $data = date('Y/m/d H:i', time());
       addControllo($data, $_SESSION['ID'], $_SESSION['IdClasse'], $db_conn);
       $controlli = getControlliByUserDate($data, $_SESSION['ID'], $_SESSION['IdClasse'], $db_conn);
       for ($i=0; $i < count($maxCestini); $i++){
@@ -95,7 +109,10 @@
       $_SESSION['valutazioni'] = array();
       $_SESSION['maxCestini'] = array();
       $_SESSION['idTipologiaCestino'] = '';
+      echo "<script>flatAlert('', 'Valutazione completata', 'success', '../checking.php?back=true')</script>";
     }
   }
 
 ?>
+</body>
+</html>

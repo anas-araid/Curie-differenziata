@@ -66,7 +66,7 @@
           $indirizzo = getIndirizzi($classe['FK_Indirizzo'], $db_conn);
           $sezione = getSezioni($classe['FK_Sezione'], $db_conn);
           echo '<tr>
-              <td>'.date('d-m-Y', strtotime($list[$i][1])).'</td>
+              <td>'.date('d-m-Y H:i', strtotime($list[$i][1])).'</td>
               <td>'.$operatore['Nome'].' '.$operatore['Cognome'].'</td>
               <td>'.$sezione['Descrizione'].' '.$indirizzo['Descrizione'].'</td>
               <td><a href="showReport.php?id='.$list[$i][0].'">Dettagli</a></td>

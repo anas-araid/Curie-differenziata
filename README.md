@@ -16,6 +16,7 @@ These instructions will get you a copy of the project to running on your local m
 #### Set up your server
 
 * Copy this repo into your xampp htdocs folder
+* In php.ini increase upload_max_filesize directive to 10M;
 
 #### Set up the database
 * Start the XAMPP control panel (xampp-control.exe)
