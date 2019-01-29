@@ -222,4 +222,22 @@
     }
     return $sezioni;
   }
+  function getCestiniByControllo($idControllo, $db_conn){
+    $cestini = array();
+    if ($idControllo == null){
+      return false;
+    }else{
+      $sql = "SELECT * FROM t_cestini WHERE (FK_Controllo='$idControllo')";
+    }
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      $cestini["$i"] = array($ris['ID'], $ris['Foto'], $ris['Valutazioni'], $ris['FK_Tipologia'], $ris['FK_Controllo']);
+      $i++;
+    }
+    return $cestini;
+  }
 ?>

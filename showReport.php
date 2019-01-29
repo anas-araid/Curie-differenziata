@@ -27,8 +27,13 @@
         if (isset($_GET['id'])){
           $id = $_GET['id'];
           $controlli = getControlli($id, $db_conn);
-          if (!empty(array_filter($controlli))){
-
+          if ($controlli['ID'] != null){
+            $controlloOperatore = getOperatore($controlli['FK_Operatore'], $db_conn);
+            $controlloClasse = getClasse($controlli['FK_Classe'], null, $db_conn);
+            $controlloIndirizzo = getIndirizzi($controlloClasse['FK_Indirizzo'], $db_conn);
+            $controlloSezione = getSezioni($controlloClasse['FK_Sezione'], $db_conn);
+            $cestini = getCestiniByControllo($controlli['ID'], $db_conn);
+            $controlloCompleto = [$controlloOperatore, $controlloIndirizzo, $controlloSezione, $cestini];
           }else{
             header('location:checking.php?back=true');
           }
@@ -82,10 +87,20 @@
                 }
 
               ?>
-            <h2 class="style-text-grey">Classe</h2>
+            <h2 class="style-text-grey">
+              <?php
+                if ($controlloCompleto[1]['Descrizione'] == '--'){
+                  echo $controlloCompleto[1]['Descrizione'] ;
+                }else{
+                  echo $controlloCompleto[2]['Descrizione'].' '.$controlloCompleto[1]['Descrizione'] ;
+                }
+                ?>
+            </h2>
             <hr style="width:100px;height:8px;border:5px solid white;border-radius:10px;background-color:#2ECC71">
             <div class="mdl-card mdl-shadow--8dp" style="border-radius:20px;padding:20px;width:100%;min-height:300px;">
-
+              <div style="text-align:center">
+                <button class="style-special-button" style="width:70%;" onclick="location.href='checking.php?back=true'">INDIETRO</button>
+              </div>
 
 
 
