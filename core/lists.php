@@ -65,10 +65,11 @@
           $classe = getClasse($list[$i][3], null, $db_conn);
           $indirizzo = getIndirizzi($classe['FK_Indirizzo'], $db_conn);
           $sezione = getSezioni($classe['FK_Sezione'], $db_conn);
+          $classeCompleta = ($sezione['Descrizione'] != '--') ? ($sezione['Descrizione'].' '.$indirizzo['Descrizione']) : ($indirizzo['Descrizione']);
           echo '<tr>
               <td>'.date('d-m-Y H:i', strtotime($list[$i][1])).'</td>
               <td>'.$operatore['Nome'].' '.$operatore['Cognome'].'</td>
-              <td>'.$sezione['Descrizione'].' '.$indirizzo['Descrizione'].'</td>
+              <td>'.$classeCompleta.'</td>
               <td><a href="showReport.php?id='.$list[$i][0].'">Dettagli</a></td>
               <td><a href="editReport.php?id='.$list[$i][0].'">Modifica</a></td>
               <td><a href="#" onclick="alertDeleteReport('.$list[$i][0].')" style="color:red">Elimina</a></td>

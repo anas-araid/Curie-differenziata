@@ -100,16 +100,46 @@
             <div class="mdl-card mdl-shadow--8dp" style="border-radius:20px;padding:20px;width:100%;min-height:300px;">
               <div style="text-align:center">
                 <button class="style-special-button" style="width:70%;" onclick="location.href='checking.php?back=true'">INDIETRO</button>
+                <button class="style-special-button" style="width:70%;" onclick="location.href='checking.php?back=true'">MODIFICA</button>
               </div>
 
+              <div class="mdl-card mdl-shadow--8dp" style="border-radius:20px;padding:20px;width:100%;min-height:300px;text-align:center">
+                <div style="overflow:auto">
+                  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:95%;margin:10px">
+                    <tbody>
+                      <tr>
+                        <td class="style-td"><h5>Orario:</h5></td>
+                        <td class="style-td"><h5><b><?php echo date('d-m-Y H:i', strtotime($controlli['Data'])) ?></b></h5></td>
+                      </tr>
+                      <tr>
+                        <td class="style-td"><h5>Operatore:</h5></td>
+                        <td class="style-td"><h5><b><?php echo $controlloOperatore['Nome'].' '.$controlloOperatore['Cognome'] ?></b></h5></td>
+                      </tr>
+                      <?php
+                        //print_r($controlloCompleto[3]);
+                        for($i=0; $i < count($controlloCompleto[3]); $i++){
+                          $controlloAttuale = $controlloCompleto[3][$i];
+                          $tipologiaCestino = $controlloAttuale[3];
+                          $votoCestino = $controlloAttuale[2];
+                          $dirFoto = $controlloAttuale[1];
+                          echo "<tr>";
+                          echo "<td class='style-td'><h5>".getTipologieCestini($tipologiaCestino, $db_conn)['Descrizione'].":</h5></td>";
+                          echo "<td class='style-td'>";
+                          $img = "";
 
+                          for ($j=0; $j < $votoCestino; $j++){
+                            $img = $img."<img src='img/star.png' style='width:8%'></img>";
+                          }
+                          echo $img;
+                          echo "</td>";
+                          echo "</tr>";
+                        }
+                       ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
 
-
-
-
-            </div>
-          </div>
-          <div class="mdl-cell mdl-cell--1-col"></div>
         </section>
         <footer style="background:url(img/bg.svg);background-repeat:no-repeat;background-size:cover;margin-bottom:0;bottom:0;height:200px;z-index:-2000">
           <br>

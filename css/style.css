@@ -48,6 +48,9 @@ body, h1, h2, h3, h4, h5, h6, p, a, span{
   padding:20px;
   margin-top:20px;
 }
+.style-td{
+  text-align: left!important;
+}
 .style-star-checked{
   color:orange;
 }
