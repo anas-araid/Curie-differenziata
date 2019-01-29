@@ -8,8 +8,14 @@
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         // error_reporting per togliere il notice quando non trova isLogged
         //error_reporting(0);
-        // inclusoine del file per la connessione al database
+        // inclusione del file per la connessione al database
         include "core/dbConnection.php";
+
+        $operatore = getOperatore($_SESSION['ID'], $db_conn);
+        if ($operatore['ID'] == null){
+          header('location:core/logout.php');
+        }
+        
         // se la session non esiste, allora integra i contolli al layout
         if (!$_SESSION['curieInclude']){
           $_SESSION = array();

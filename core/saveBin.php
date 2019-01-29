@@ -19,7 +19,13 @@
   include "addData.php";
   include "updateData.php";
 
-  session_start();
+  $operatore = getOperatore($_SESSION['ID'], $db_conn);
+  if ($operatore['ID'] == null){
+    echo "<script>flatAlert('Errore', 'Sessione non valida: rieffettuare l\'accesso', 'warning', '../core/logout.php');</script>";
+    return;
+  }
+
+
   if (in_array($_SESSION['idTipologiaCestino'], $_SESSION['maxCestini'])){
     if (isset($_POST["salva"])){
       $file = 'scatta_';

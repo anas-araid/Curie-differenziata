@@ -10,7 +10,12 @@
         // inclusione del file per la connessione al database
         include "core/dbConnection.php";
         include "core/getData.php";
-        // se la session non esiste, allora integra i contolli al layout
+
+        $operatore = getOperatore($_SESSION['ID'], $db_conn);
+        if ($operatore['ID'] == null){
+          header('location:core/logout.php');
+        }
+
         if (!$_SESSION['curieInclude']){
           $_SESSION = array();
           $_SESSION['curieInclude'] = 'core/lists.php';
@@ -23,7 +28,7 @@
           $id = $_GET['id'];
           $controlli = getControlli($id, $db_conn);
           if (!empty(array_filter($controlli))){
-            
+
           }else{
             header('location:checking.php?back=true');
           }
