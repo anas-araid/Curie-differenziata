@@ -89,7 +89,7 @@
               ?>
             <h2 class="style-text-grey">
               <?php
-                if ($controlloCompleto[1]['Descrizione'] == '--'){
+                if ($controlloCompleto[2]['Descrizione'] == '--'){
                   echo $controlloCompleto[1]['Descrizione'] ;
                 }else{
                   echo $controlloCompleto[2]['Descrizione'].' '.$controlloCompleto[1]['Descrizione'] ;
@@ -100,7 +100,7 @@
             <div class="mdl-card mdl-shadow--8dp" style="border-radius:20px;padding:20px;width:100%;min-height:300px;">
               <div style="text-align:center">
                 <button class="style-special-button" style="width:70%;" onclick="location.href='checking.php?back=true'">INDIETRO</button>
-                <button class="style-special-button" style="width:70%;" onclick="location.href='checking.php?back=true'">MODIFICA</button>
+                <button class="style-special-button" style="width:70%;" onclick="location.href='editReport.php?id=<?php echo $controlli['ID'] ?>'">MODIFICA</button>
               </div>
 
               <div class="mdl-card mdl-shadow--8dp" style="border-radius:20px;padding:20px;width:100%;min-height:300px;text-align:center">
@@ -110,10 +110,12 @@
                       <tr>
                         <td class="style-td"><h5>Orario:</h5></td>
                         <td class="style-td"><h5><b><?php echo date('d-m-Y H:i', strtotime($controlli['Data'])) ?></b></h5></td>
+                        <td class="style-td"></td>
                       </tr>
                       <tr>
                         <td class="style-td"><h5>Operatore:</h5></td>
                         <td class="style-td"><h5><b><?php echo $controlloOperatore['Nome'].' '.$controlloOperatore['Cognome'] ?></b></h5></td>
+                        <td class="style-td"></td>
                       </tr>
                       <?php
                         //print_r($controlloCompleto[3]);
@@ -128,10 +130,20 @@
                           $img = "";
 
                           for ($j=0; $j < $votoCestino; $j++){
-                            $img = $img."<img src='img/star.png' style='width:8%'></img>";
+                            $img = $img."<img src='img/star.png' style='width:10%'></img>";
                           }
                           echo $img;
                           echo "</td>";
+                          echo "<td class='style-td'>";
+                          if ($dirFoto != null){
+                            ?>
+                            <a onclick="openModal(<?php echo "'$dirFoto'" ?>)" style="text-decoration:underline;cursor:pointer">Mostra immagine</a>
+                            <?php
+                          }else{
+                            echo "<h6>Nessuna foto caricata</h6>";
+                          }
+                          echo "</td>";
+
                           echo "</tr>";
                         }
                        ?>
@@ -139,6 +151,37 @@
                   </table>
                 </div>
               </div>
+              <script>
+                var foto;
+                var content = "";
+                function openModal(ciao){
+                  this.foto = ciao;
+                  this.content = '<div><img id="idImmagine" src="'+foto+'" style="width:100%"></img><div>';
+                  modal.open();
+                }
+                console.log(foto);
+                var modal = new tingle.modal({
+                    closeMethods: ['overlay', 'button', 'escape'],
+                    closeLabel: "Chiudi",
+                    cssClass: ['custom-class-1', 'custom-class-2'],
+                    onOpen: function() {
+                        console.log('modal open');
+                        modal.setContent(
+                          content
+                        );
+                    },
+                    onClose: function() {
+                        console.log('modal closed');
+                    },
+                    beforeClose: function() {
+                        return true; // close the modal
+                        return false; // nothing happens
+                    }
+                });
+                console.log(this.content);
+                //document.getElementById('idImmagine').src = foto;
+
+              </script>
 
         </section>
         <footer style="background:url(img/bg.svg);background-repeat:no-repeat;background-size:cover;margin-bottom:0;bottom:0;height:200px;z-index:-2000">
