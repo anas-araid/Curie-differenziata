@@ -47,6 +47,14 @@ Take a moment to read this document in order to make the process simple and cons
 The final user is the school operator that will provide the checking and rating, so the interface must be easy and intuitive, like the [project prototype](../docs/img).
 ```
 
+### ToDO
+
+* Delete report
+* Edit report
+* Stats
+* Generate and download csv
+* Search
+* Admin page
 
 #### Some coding standards
 

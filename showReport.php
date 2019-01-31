@@ -154,12 +154,11 @@
               <script>
                 var foto;
                 var content = "";
-                function openModal(ciao){
-                  this.foto = ciao;
+                function openModal(photoDir){
+                  this.foto = photoDir;
                   this.content = '<div><img id="idImmagine" src="'+foto+'" style="width:100%"></img><div>';
                   modal.open();
                 }
-                console.log(foto);
                 var modal = new tingle.modal({
                     closeMethods: ['overlay', 'button', 'escape'],
                     closeLabel: "Chiudi",
