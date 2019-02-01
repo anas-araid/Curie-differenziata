@@ -124,6 +124,9 @@
                           $tipologiaCestino = $controlloAttuale[3];
                           $votoCestino = $controlloAttuale[2];
                           $dirFoto = $controlloAttuale[1];
+                          if (!file_exists($dirFoto)){
+                            $dirFoto = "img/404.svg";
+                          }
                           echo "<tr>";
                           echo "<td class='style-td'><h5>".getTipologieCestini($tipologiaCestino, $db_conn)['Descrizione'].":</h5></td>";
                           echo "<td class='style-td'>";
@@ -157,6 +160,9 @@
                 function openModal(photoDir){
                   this.foto = photoDir;
                   this.content = '<div><img id="idImmagine" src="'+foto+'" style="width:100%"></img><div>';
+                  if (this.foto == "img/404.svg"){
+                    this.content = '<div><h4>Immagine non disponibile</h4><img id="idImmagine" src="'+foto+'" style="width:100%"></img><div>';
+                  }
                   modal.open();
                 }
                 var modal = new tingle.modal({

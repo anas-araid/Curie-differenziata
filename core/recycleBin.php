@@ -60,6 +60,7 @@
         <br>
         <br>
         <br>
+        <p style="text-align:left" class="style-text-grey">E' consigliato utilizzare foto orizzontali</p>
         <!-- Un modo artigianale per personalizzare il bottone carica foto -->
         <input hidden name='<?php echo "carica_".$idTipologia ?>' id='<?php echo "carica_".$idTipologia ?>' type="file" accept="image/*"></input>
         <input type="button" class="style-special-button" style="width:50%;" value="CARICA FOTO" onclick="document.getElementById('<?php echo "carica_".$idTipologia ?>').click();"></input>
@@ -67,10 +68,6 @@
         <input type="button" class="style-special-button" style="width:50%;" value="SCATTA FOTO" onclick="document.getElementById('<?php echo "scatta_".$idTipologia ?>').click();"></input>
       </div>
     </div>
-    <?php
-    print_r($_SESSION['valutazioni']);
-
-    ?>
     <button hidden name='salva' id="salva" type="submit">salva</button>
   </form>
 </div>

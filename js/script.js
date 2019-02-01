@@ -28,7 +28,7 @@ function alertDeleteReport(id){
   swal(
     {
       title: "Vuoi continuare?",
-      text: "Perderai tutti i dati ",
+      text: "I dati del controllo verranno eliminati",
       icon: "error",
       buttons: {
         cancel: {
