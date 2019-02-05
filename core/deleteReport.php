@@ -22,6 +22,6 @@
       die("error");
     }
     $_SESSION['include'] = 'list.php';
-    header("location:../checking.php");
+    redirect("../checking.php");
   }
 ?>

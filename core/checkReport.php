@@ -48,7 +48,7 @@
       $_SESSION['Classe'] = getSezioni($classe['FK_Sezione'], $db_conn)['Descrizione'];
     }
     $_SESSION['curieInclude'] = "core/recycleBin.php";
-    header("location:../checking.php");
+    redirect("../checking.php");
    ?>
  </body>
 </html>

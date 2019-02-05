@@ -1,5 +1,6 @@
 <?php
   session_start();
+  include "functions.php";
   $ipaddress = $_SERVER['REMOTE_ADDR'];
   $timestamp = date('d/m/Y H:i:s');
   $browser = $_SERVER['HTTP_USER_AGENT'];
@@ -14,5 +15,5 @@
   fwrite($log, $line);
   fclose($log);
   $_SESSION['curieInclude'] = 'core/lists.php';
-  header("location:../checking.php");
+  redirect("../checking.php");
 ?>

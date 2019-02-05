@@ -6,7 +6,7 @@
       try{
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         // error_reporting per togliere il notice quando non trova isLogged
-        //error_reporting(0);
+        error_reporting(0);
         // inclusione del file per la connessione al database
         include "core/dbConnection.php";
         include "core/getData.php";
@@ -35,10 +35,10 @@
             $cestini = getCestiniByControllo($controlli['ID'], $db_conn);
             $controlloCompleto = [$controlloOperatore, $controlloIndirizzo, $controlloSezione, $cestini];
           }else{
-            header('location:checking.php?back=true');
+            redirect('checking.php?back=true');
           }
         }else{
-          header('location:checking.php?back=true');
+          redirect('checking.php?back=true');
         }
       }catch(Exception $e){
       }
@@ -115,6 +115,23 @@
                       <tr>
                         <td class="style-td"><h5>Operatore:</h5></td>
                         <td class="style-td"><h5><b><?php echo $controlloOperatore['Nome'].' '.$controlloOperatore['Cognome'] ?></b></h5></td>
+                        <td class="style-td"></td>
+                      </tr>
+                      <tr>
+                        <td class="style-td"><h5>Classe:</h5></td>
+                        <td class="style-td">
+                          <h5>
+                            <b>
+                              <?php
+                                if ($controlloCompleto[2]['Descrizione'] == '--'){
+                                  echo $controlloCompleto[1]['Descrizione'] ;
+                                }else{
+                                  echo $controlloCompleto[2]['Descrizione'].' '.$controlloCompleto[1]['Descrizione'] ;
+                                }
+                              ?>
+                            </b>
+                          </h5>
+                        </td>
                         <td class="style-td"></td>
                       </tr>
                       <?php

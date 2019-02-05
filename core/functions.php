@@ -20,6 +20,9 @@
     function php_log($text){
       echo "<script>console.log('".$text."')</script>";
     }
+    function redirect($text){
+      echo "<script>location.href='".$text."'</script>";
+    }
     function removeQuotes($text){
       $newText = str_replace("'", " ", $text);
       $string = str_replace('"', " ", $newText);
