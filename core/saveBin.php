@@ -70,7 +70,7 @@
     // che ha finito e inizia a salvare i dati nel db
     if (array_key_exists($position + 1, $_SESSION['maxCestini'])){
       $_SESSION['idTipologiaCestino'] = $_SESSION['maxCestini'][$position + 1];
-      header('location:../checking.php?bin='.$_SESSION['idTipologiaCestino']);
+      redirect('../checking.php?bin='.$_SESSION['idTipologiaCestino']);
     }else{
       $valutazioni = $_SESSION['valutazioni'];
       $maxCestini = $_SESSION['maxCestini'];

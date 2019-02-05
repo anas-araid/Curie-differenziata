@@ -57,7 +57,7 @@
                     </script>";
                 }
                 if ($_SESSION['curieInclude'] != 'core/login.php' && $_SESSION['curieInclude'] != 'core/home.php'){
-                  header("location:404.php");
+                  redirect("404.php");
                 }
                 // integra il file salvato nella session
                 include $_SESSION['curieInclude'];

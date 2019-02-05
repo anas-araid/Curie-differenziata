@@ -29,7 +29,7 @@
   function getControlli($ID, $db_conn){
     $controlli = array();
     if ($ID == null){
-      $sql = "SELECT * FROM t_controlli";
+      $sql = "SELECT * FROM t_controlli ORDER BY Data DESC";
     }else{
       $sql = "SELECT * FROM t_controlli WHERE (ID='$ID')";
     }
