@@ -44,6 +44,8 @@
           <a class="mdl-navigation__link" href="core/logout.php">Home</a>
           <a class="mdl-navigation__link" onclick="redirectLogin()" style="cursor:pointer">Login</a>
           <a class="mdl-navigation__link" href="https://github.com/asdf1899/Curie-differenziata">Progetto</a>
+          <hr>
+          <a class="mdl-navigation__link" href="https://asdf1899.github.io" target="_blank">Creato da Anas Araid</a>
         </nav>
       </div>
       <main class="mdl-layout__content" style="margin:0">

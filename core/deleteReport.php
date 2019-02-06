@@ -1,7 +1,8 @@
 <?php
+  @ob_start();
+  session_start();
   include "dbConnection.php";
   include "getData.php";
-  session_start();
   $reportID = $_GET['id'];
   $cestini = getCestiniByControllo($reportID, $db_conn);
   if (isset($cestini)){
@@ -10,7 +11,6 @@
         unlink('../'.$cestini[$i][1]);
       }
       $sql = "DELETE FROM t_cestini WHERE ID='".$cestini[$i][0]."'";
-      echo $sql;
       $deleteCestini = mysqli_query($db_conn, $sql);
       if ($deleteCestini == null){
         die("error");

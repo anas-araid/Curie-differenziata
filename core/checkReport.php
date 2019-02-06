@@ -1,3 +1,7 @@
+<?php
+  @ob_start();
+  session_start();
+?>
 <html>
 <head>
   <title>Curie Differenziata</title>
@@ -22,7 +26,6 @@
 </head>
 <body>
   <?php
-    session_start();
     include "dbConnection.php";
     include "getData.php";
     $IdIndirizzo = text_filter($_POST['indirizzo']);
