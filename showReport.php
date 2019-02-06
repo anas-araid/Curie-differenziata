@@ -111,10 +111,12 @@
                         <td class="style-td"><h5>Orario:</h5></td>
                         <td class="style-td"><h5><b><?php echo date('d-m-Y H:i', strtotime($controlli['Data'])) ?></b></h5></td>
                         <td class="style-td"></td>
+                        <td class="style-td"></td>
                       </tr>
                       <tr>
                         <td class="style-td"><h5>Operatore:</h5></td>
                         <td class="style-td"><h5><b><?php echo $controlloOperatore['Nome'].' '.$controlloOperatore['Cognome'] ?></b></h5></td>
+                        <td class="style-td"></td>
                         <td class="style-td"></td>
                       </tr>
                       <tr>
@@ -123,16 +125,21 @@
                           <h5>
                             <b>
                               <?php
+                                $indirizzoCompleto = '';
                                 if ($controlloCompleto[2]['Descrizione'] == '--'){
                                   echo $controlloCompleto[1]['Descrizione'] ;
+                                  $indirizzoCompleto = $controlloCompleto[1]['Descrizione'];
                                 }else{
                                   echo $controlloCompleto[2]['Descrizione'].' '.$controlloCompleto[1]['Descrizione'] ;
+                                  $indirizzoCompleto =$controlloCompleto[2]['Descrizione'].' '.$controlloCompleto[1]['Descrizione'];
                                 }
+                                echo "<script>var addressValue = '$indirizzoCompleto';</script>";
                               ?>
                             </b>
                           </h5>
                         </td>
                         <td class="style-td"></td>
+                        <td class="style-td">
                       </tr>
                       <?php
                         //print_r($controlloCompleto[3]);
@@ -157,13 +164,21 @@
                           echo "<td class='style-td'>";
                           if ($dirFoto != null){
                             ?>
-                            <a onclick="openModal(<?php echo "'$dirFoto'" ?>)" style="text-decoration:underline;cursor:pointer">Mostra immagine</a>
+                            <a onclick="openPhoto(<?php echo "'$dirFoto'" ?>)" style="text-decoration:underline;cursor:pointer">Mostra immagine</a>
                             <?php
                           }else{
                             echo "<h6>Nessuna foto caricata</h6>";
                           }
                           echo "</td>";
-
+                          echo "<td class='style-td'>";
+                          $editIDcestino = $controlloAttuale[0];
+                          $editTipologiaCestino = getTipologieCestini($tipologiaCestino, $db_conn)['Descrizione'];
+                          //echo "<script>var editIDcestino = ;</script>";
+                          //echo "<script>var editTipologiaCestino = '$editTipologiaCestino';</script>";
+                          ?>
+                          <a onclick="editRating(<?php echo $editIDcestino ?>, '<?php echo $editTipologiaCestino ?>')" style="text-decoration:underline;cursor:pointer">Modifica</a>
+                          <?php
+                          echo "</td>";
                           echo "</tr>";
                         }
                        ?>
@@ -172,24 +187,56 @@
                 </div>
               </div>
               <script>
-                var foto;
-                var content = "";
-                function openModal(photoDir){
-                  this.foto = photoDir;
-                  this.content = '<div><img id="idImmagine" src="'+foto+'" style="width:100%"></img><div>';
-                  if (this.foto == "img/404.svg"){
-                    this.content = '<div><h4>Immagine non disponibile</h4><img id="idImmagine" src="'+foto+'" style="width:100%"></img><div>';
-                  }
-                  modal.open();
+                var editContent = '';
+                function editRating(editIDcestino, editTipologiaCestino){
+                  console.log(editIDcestino);
+                  this.editContent = 
+                  '<div class="mdl-card mdl-shadow--8dp" style="border-radius:20px;padding:20px;width:85%;min-height:200px;display:inline-block;margin:20px;text-align:center">'+
+                  '<h3>'+addressValue+'</h3>'+
+                  '<br>'+
+                  '<form method="post" action="core/updateBin.php" enctype="multipart/form-data">' +
+                    '<h5 style="text-align:left">'+ editTipologiaCestino +'</h5>'+    
+                    '<div style="text-align:center">' +      
+                      '<div class="rate">' +  
+                        '<p style="text-align:left" class="style-text-grey">*campo obbligatorio</p>'+      
+                        '<input type="radio" id="star5" name="star5" value="5" required=""/>'+  
+                        '<label for="star5" title="5">5 stars</label>'+    
+                        '<input type="radio" id="star4" name="star4" value="4" required=""/>'+  
+                        '<label for="star4" title="4">4 stars</label>'+  
+                        '<input type="radio" id="star3" name="star3" value="3" required=""/>'+  
+                        '<label for="star3" title="3">3 stars</label>'+  
+                        '<input type="radio" id="star2" name="star2" value="2" required=""/>'+  
+                        '<label for="star2" title="2">2 stars</label>'+  
+                        '<input type="radio" id="star1" name="star1" value="1" required=""/>'+  
+                        '<label for="star1" title="1">1 stars</label>'+  
+                      '</div>' +   
+                      '<br>'+
+                      '<br>'+                      
+                      '<br>'+                      
+                      '<br>'+                      
+                      '<br>'+                      
+                      '<input hidden name="carica" id="carica" type="file" accept="image/*"></input>'+
+                      '<input hidden name="scatta" id="scatta" type="file" capture="camera" accept="image/*"></input>'+
+                      '<input type="button" class="style-special-button" style="width:50%;" value="CARICA FOTO" onclick="document.getElementById('+"'carica'"+').click();"></input>'+
+                      '<input type="button" class="style-special-button" style="width:50%;" value="SCATTA FOTO" onclick="document.getElementById('+"'scatta'"+').click();"></input>'+
+                      '<br>'+
+                      '<br>'+                      
+                      '<button class="style-button-green" name="salva" id="salva" type="submit">SALVA LE MODIFICHE</button>'+
+                      '<button class="style-button-green" name="annulla" id="annulla" type="reset" onclick=editRatingModal.close()>ANNULLA</button>'+
+                      '<br>'+         
+                    '</div>' +              
+                  '</form>'+
+                  '</div>';
+                  editRatingModal.open();
                 }
-                var modal = new tingle.modal({
+                var editRatingModal = new tingle.modal({
                     closeMethods: ['overlay', 'button', 'escape'],
                     closeLabel: "Chiudi",
                     cssClass: ['custom-class-1', 'custom-class-2'],
                     onOpen: function() {
                         console.log('modal open');
-                        modal.setContent(
-                          content
+                        editRatingModal.setContent(
+                          editContent
                         );
                     },
                     onClose: function() {
@@ -200,9 +247,38 @@
                         return false; // nothing happens
                     }
                 });
-                console.log(this.content);
+                //#######################################################################################
+                var foto;
+                var photoContent = "";
+                function openPhoto(photoDir){
+                  this.foto = photoDir;
+                  this.photoContent = '<div><img id="idImmagine" src="'+foto+'" style="width:100%"></img><div>';
+                  if (this.foto == "img/404.svg"){
+                    this.photoContent = '<div><h4>Immagine non disponibile</h4><img id="idImmagine" src="'+foto+'" style="width:100%"></img><div>';
+                  }
+                  photoModal.open();
+                }
+                var photoModal = new tingle.modal({
+                    closeMethods: ['overlay', 'button', 'escape'],
+                    closeLabel: "Chiudi",
+                    cssClass: ['custom-class-1', 'custom-class-2'],
+                    onOpen: function() {
+                        console.log('modal open');
+                        photoModal.setContent(
+                          photoContent
+                        );
+                    },
+                    onClose: function() {
+                        console.log('modal closed');
+                    },
+                    beforeClose: function() {
+                        return true; // close the modal
+                        return false; // nothing happens
+                    }
+                });
+                console.log(this.photoContent);
                 //document.getElementById('idImmagine').src = foto;
-
+                //#######################################################################################
               </script>
 
         </section>
