@@ -1,3 +1,7 @@
+<?php
+  @ob_start();
+  session_start();
+?>
 <html>
   <head>
     <title>Curie Differenziata</title>
@@ -18,7 +22,6 @@
       include "dbConnection.php";
       include "getData.php";
       include "updateData.php";
-      session_start();
       if (isset($_POST['salva'])){
         // estraggo il rating dal post
         if (isset($_POST['star'])){

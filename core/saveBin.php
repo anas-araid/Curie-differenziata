@@ -1,3 +1,7 @@
+<?php
+  @ob_start();
+  session_start();
+?>
 <html>
   <head>
     <title>Curie Differenziata</title>
@@ -18,7 +22,6 @@
   include "getData.php";
   include "addData.php";
   include "updateData.php";
-  session_start();
   $operatore = getOperatore($_SESSION['ID'], $db_conn);
   if ($operatore['ID'] == null){
     echo "<script>flatAlert('Errore', 'Sessione non valida: rieffettuare l\'accesso', 'warning', '../core/logout.php');</script>";
