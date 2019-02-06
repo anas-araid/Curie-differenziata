@@ -1,9 +1,12 @@
+<?php
+  @ob_start();
+  session_start();
+?>
 <html>
   <head>
     <?php
       include "core/_header.php";
       include 'core/getData.php';
-      session_start();
       try{
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         // error_reporting per togliere il notice quando non trova isLogged
@@ -15,7 +18,7 @@
         if ($operatore['ID'] == null){
           header('location:core/logout.php');
         }
-        
+
         // se la session non esiste, allora integra i contolli al layout
         if (!$_SESSION['curieInclude']){
           $_SESSION = array();
