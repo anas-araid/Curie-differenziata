@@ -103,7 +103,6 @@
             <div class="mdl-card mdl-shadow--8dp" style="border-radius:20px;padding:20px;width:100%;min-height:300px;">
               <div style="text-align:center">
                 <button class="style-special-button" style="width:70%;" onclick="location.href='checking.php?back=true'">INDIETRO</button>
-                <button class="style-special-button" style="width:70%;" onclick="location.href='editReport.php?id=<?php echo $controlli['ID'] ?>'">MODIFICA</button>
               </div>
 
               <div class="mdl-card mdl-shadow--8dp" style="border-radius:20px;padding:20px;width:100%;min-height:300px;text-align:center">

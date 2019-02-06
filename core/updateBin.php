@@ -51,7 +51,7 @@
         }else{
           $dir = '';
         }
-        editCestino($idCestino, $dir, $rating);
+        editCestino($idCestino, $dir, $rating, $db_conn);
         $idControllo = getIdControlloByCestini($idCestino, $db_conn);
         redirect('../showReport.php?id='.$idControllo);
       }

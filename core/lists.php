@@ -41,7 +41,6 @@
         <th>Data</th>
         <th>Operatore</th>
         <th>Classe</th>
-        <th></th>
         <th></th
       </tr>
     </thead>
@@ -71,7 +70,6 @@
               <td>'.$operatore['Nome'].' '.$operatore['Cognome'].'</td>
               <td>'.$classeCompleta.'</td>
               <td><a href="showReport.php?id='.$list[$i][0].'">Dettagli</a></td>
-              <td><a href="editReport.php?id='.$list[$i][0].'">Modifica</a></td>
               <td><a href="#" onclick="alertDeleteReport('.$list[$i][0].')" style="color:red">Elimina</a></td>
             </tr>';
         }
