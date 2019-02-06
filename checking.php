@@ -1,8 +1,11 @@
+<?php
+  @ob_start();
+  session_start();
+?>
 <html>
   <head>
     <?php
       include "core/_header.php";
-      session_start();
       try{
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         // error_reporting per togliere il notice quando non trova isLogged

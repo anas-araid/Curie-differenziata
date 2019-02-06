@@ -85,7 +85,7 @@
         do{
           $foto = uniqid().".jpg";
           $newFoto = 'uploads/'.$foto;
-        }while (checkIfPhotoExist('../'.$newFoto, $db_conn));
+        }while (checkIfPhotoExist($newFoto, $db_conn));
         if (file_exists($oldFile)){
           rename($oldFile, '../'.$newFoto);
         }else{

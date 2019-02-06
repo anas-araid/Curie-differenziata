@@ -240,4 +240,20 @@
     }
     return $cestini;
   }
+  function getIdControlloByCestini($ID, $db_conn){
+    $controllo = null;
+    if ($ID == null){
+      return false;
+    }else{
+      $sql = "SELECT FK_Controllo FROM t_cestini WHERE (ID='$ID')";
+    }
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      $controllo = $ris['FK_Controllo'];
+    }
+    return $controllo;
+  }
 ?>

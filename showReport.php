@@ -1,8 +1,11 @@
+<?php
+  @ob_start();
+  session_start();
+?>
 <html>
   <head>
     <?php
       include "core/_header.php";
-      session_start();
       try{
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         // error_reporting per togliere il notice quando non trova isLogged
@@ -190,41 +193,41 @@
                 var editContent = '';
                 function editRating(editIDcestino, editTipologiaCestino){
                   console.log(editIDcestino);
-                  this.editContent = 
+                  this.editContent =
                   '<div class="mdl-card mdl-shadow--8dp" style="border-radius:20px;padding:20px;width:85%;min-height:200px;display:inline-block;margin:20px;text-align:center">'+
                   '<h3>'+addressValue+'</h3>'+
                   '<br>'+
                   '<form method="post" action="core/updateBin.php" enctype="multipart/form-data">' +
-                    '<h5 style="text-align:left">'+ editTipologiaCestino +'</h5>'+    
-                    '<div style="text-align:center">' +      
-                      '<div class="rate">' +  
-                        '<p style="text-align:left" class="style-text-grey">*campo obbligatorio</p>'+      
-                        '<input type="radio" id="star5" name="star5" value="5" required=""/>'+  
-                        '<label for="star5" title="5">5 stars</label>'+    
-                        '<input type="radio" id="star4" name="star4" value="4" required=""/>'+  
-                        '<label for="star4" title="4">4 stars</label>'+  
-                        '<input type="radio" id="star3" name="star3" value="3" required=""/>'+  
-                        '<label for="star3" title="3">3 stars</label>'+  
-                        '<input type="radio" id="star2" name="star2" value="2" required=""/>'+  
-                        '<label for="star2" title="2">2 stars</label>'+  
-                        '<input type="radio" id="star1" name="star1" value="1" required=""/>'+  
-                        '<label for="star1" title="1">1 stars</label>'+  
-                      '</div>' +   
+                    '<h5 style="text-align:left">'+ editTipologiaCestino +'</h5>'+
+                    '<div style="text-align:center">' +
+                      '<div class="rate">' +
+                        '<p style="text-align:left" class="style-text-grey">*campo obbligatorio</p>'+
+                        '<input type="radio" id="star5" name="star" value="5" required=""/>'+
+                        '<label for="star5" title="5">5 stars</label>'+
+                        '<input type="radio" id="star4" name="star" value="4" required=""/>'+
+                        '<label for="star4" title="4">4 stars</label>'+
+                        '<input type="radio" id="star3" name="star" value="3" required=""/>'+
+                        '<label for="star3" title="3">3 stars</label>'+
+                        '<input type="radio" id="star2" name="star" value="2" required=""/>'+
+                        '<label for="star2" title="2">2 stars</label>'+
+                        '<input type="radio" id="star1" name="star" value="1" required=""/>'+
+                        '<label for="star1" title="1">1 stars</label>'+
+                      '</div>' +
                       '<br>'+
-                      '<br>'+                      
-                      '<br>'+                      
-                      '<br>'+                      
-                      '<br>'+                      
+                      '<br>'+
+                      '<br>'+
+                      '<br>'+
+                      '<br>'+
                       '<input hidden name="carica" id="carica" type="file" accept="image/*"></input>'+
                       '<input hidden name="scatta" id="scatta" type="file" capture="camera" accept="image/*"></input>'+
                       '<input type="button" class="style-special-button" style="width:50%;" value="CARICA FOTO" onclick="document.getElementById('+"'carica'"+').click();"></input>'+
                       '<input type="button" class="style-special-button" style="width:50%;" value="SCATTA FOTO" onclick="document.getElementById('+"'scatta'"+').click();"></input>'+
                       '<br>'+
-                      '<br>'+                      
-                      '<button class="style-button-green" name="salva" id="salva" type="submit">SALVA LE MODIFICHE</button>'+
+                      '<br>'+
+                      '<button class="style-button-green" name="salva" id="salva" type="submit" value="'+editIDcestino+'">SALVA LE MODIFICHE</button>'+
                       '<button class="style-button-green" name="annulla" id="annulla" type="reset" onclick=editRatingModal.close()>ANNULLA</button>'+
-                      '<br>'+         
-                    '</div>' +              
+                      '<br>'+
+                    '</div>' +
                   '</form>'+
                   '</div>';
                   editRatingModal.open();

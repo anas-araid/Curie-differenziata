@@ -1,14 +1,21 @@
+<?php
+  @ob_start();
+  session_start();
+?>
 <html>
   <head>
     <?php
       include "core/_header.php";
-      session_start();
       try{
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         // error_reporting per togliere il notice quando non trova isLogged
         //error_reporting(0);
         // inclusoine del file per la connessione al database
         include "core/dbConnection.php";
+        if (isset($_GET['login'])){
+          $_SESSION['curieInclude'] = "core/login.php";
+          echo "<script>location.href='index.php'</script>";
+        }
         // se la session non esiste, allora integra la home al layout
         if (!$_SESSION['curieInclude']){
           $_SESSION = array();
@@ -80,12 +87,6 @@
             location.href = "index.php?login=true";
           }
         </script>
-        <?php
-          if ($_GET['login']){
-            $_SESSION['curieInclude'] = "core/login.php";
-            echo "<script>location.href='index.php'</script>";
-          }
-        ?>
       </main>
     </div>
   </body>
