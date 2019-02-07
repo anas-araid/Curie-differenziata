@@ -49,7 +49,6 @@ The final user is the school operator that will provide the checking and rating,
 
 ### ToDO
 
-* Edit report
 * Stats
 * Generate and download csv
 * Search
