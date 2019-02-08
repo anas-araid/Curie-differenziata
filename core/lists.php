@@ -46,8 +46,8 @@
     </thead>
     <tbody>
       <?php
-        if (isset($_SESSION['search'])){
-          if ($_SESSION['search'] == array()){
+        if (isset($_SESSION['searchReports'])){
+          if ($_SESSION['searchReports'] == array()){
             echo "<script>flatAlert('Attenzione', 'La ricerca non ha prodotto risultati.', 'warning', '#')</script>";
           }else{
             $_SESSION['curieInclude'] = 'core/searchControlli.php';

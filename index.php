@@ -12,6 +12,7 @@
         //error_reporting(0);
         // inclusoine del file per la connessione al database
         include "core/dbConnection.php";
+        include "core/getData.php";
         if (isset($_GET['login'])){
           $_SESSION['curieInclude'] = "core/login.php";
           echo "<script>location.href='index.php'</script>";

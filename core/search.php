@@ -5,6 +5,7 @@
 
   if (isset($_POST['find'])){
     $searchKeyword = text_filter($_POST['find']);
+    $_SESSION['searchKeyword'] = $searchKeyword;
     // searchOperatori restituisce l'id dell'operatore
     $idOperatori = searchOperatori($searchKeyword, $db_conn);
     $idSezioni = searchSezioni($searchKeyword, $db_conn);
@@ -53,7 +54,9 @@
       $reportsIndex++;
     }
     $reports = array_unique($reports);
-    $_SESSION['searchReport'] = $reports;
+    $_SESSION['searchReports'] = $reports;
+    $_SESSION['curieInclude'] = 'core/lists.php';
+    redirect('../checking.php');
     return $reports;
   }
 

@@ -2,8 +2,6 @@
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     <select class="mdl-textfield__input" id="operatore" name="operatore" required="" style="outline:none">
       <?php
-        // inserisco nel menu a tendina tutti gli operatori nel database
-        include 'core/getData.php';
         // $users contiene un array con le info degli operatori
         $users = getOperatore(null, $db_conn);
         for ($i=0; $i < count($users); $i++){
