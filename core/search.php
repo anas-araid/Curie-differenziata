@@ -12,10 +12,13 @@
     $idIndirizzi = searchIndirizzi($searchKeyword, $db_conn);
     $reports = array();
     $reportsIndex = 0;
+    // contiene la lista di id degli operatori
     if (isset($idOperatori)){
       for ($i=0;$i<count($idOperatori);$i++){
+        // getReportsByOperatori ritorna un array con gli id controlli
         $getReports = getReportsByOperatori($idOperatori[$i][0], $db_conn);
         for ($j=0; $j<count($getReports);$j++){
+          // inserisce nell'array $reports gli id dei controlli
           $reports[$reportsIndex] = $getReports[$j][0];
           $reportsIndex++;
         }
@@ -26,14 +29,14 @@
     for ($i=0; $i<count($idSezioni);$i++){
       $getSearchSezioni = getClasseBySearch(null, $idSezioni[$i][0], $db_conn);
       for ($j=0; $j<count($getSearchSezioni);$j++){
-        $idClass[$classIndex] = $getSearchSezioni[$j][0];
+        $idClass[$classIndex] = $getSearchSezioni[$j];
         $classIndex++;
       }
     }
     for ($i=0; $i<count($idIndirizzi);$i++){
       $getSearchIndirizzi = getClasseBySearch($idIndirizzi[$i][0], null, $db_conn);
       for ($j=0; $j<count($getSearchIndirizzi);$j++){
-        $idClass[$classIndex] = $getSearchIndirizzi[$j][0];
+        $idClass[$classIndex] = $getSearchIndirizzi[0];
         $classIndex++;
       }
     }

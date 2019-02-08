@@ -49,6 +49,7 @@
         if (isset($_SESSION['searchReports'])){
           if ($_SESSION['searchReports'] == array()){
             echo "<script>flatAlert('Attenzione', 'La ricerca non ha prodotto risultati.', 'warning', '#')</script>";
+            $_SESSION['searchReports'] = null;
           }else{
             $_SESSION['curieInclude'] = 'core/searchControlli.php';
             echo "
