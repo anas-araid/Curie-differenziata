@@ -14,6 +14,11 @@
   }
   fwrite($log, $line);
   fclose($log);
-  $_SESSION['curieInclude'] = 'core/lists.php';
-  redirect("../checking.php");
+  if ($_SESSION['admin']){
+    $_SESSION['admin'] = null;
+    redirect("../admin.php");
+  }else{
+    $_SESSION['curieInclude'] = 'core/lists.php';
+    redirect("../checking.php");
+  }
 ?>

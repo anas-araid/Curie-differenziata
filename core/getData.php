@@ -72,9 +72,7 @@
       die('error');
         //throw new exception ("Impossibile aggiornare l'utente");
     }
-    $esistenzaUtente = false;
     while($ris = mysqli_fetch_array ($select, MYSQLI_ASSOC)){
-      $esistenzaUtente = true;
       //$_SESSION['include'] = ' ';
       $operatore = getOperatore($id, $db_conn);
       $_SESSION['ID'] = $operatore['ID'];
@@ -82,7 +80,7 @@
       $_SESSION['Cognome'] = $operatore['Cognome'];
       $_SESSION['Codice'] = $operatore['Codice'];
     }
-    return $esistenzaUtente;
+    return $operatore;
   }
   function getIndirizzi($ID, $db_conn){
     $indirizzi = array();

@@ -5,9 +5,7 @@
         // $users contiene un array con le info degli operatori
         $users = getOperatore(null, $db_conn);
         for ($i=0; $i < count($users); $i++){
-          if ($users[$i][3] == 1){
-            echo "<option value='".$users[$i][0]."'>".$users[$i][1]." ".$users[$i][2]."</option>";
-          }
+          echo "<option value='".$users[$i][0]."'>".$users[$i][1]." ".$users[$i][2]."</option>";
         }
       ?>
     </select>
@@ -18,8 +16,7 @@
     <input class="mdl-textfield__input" type="password" id="password" name="password" required="">
     <label class="mdl-textfield__label" for="password">Password</label>
   </div>
-  <!-- DA FARE!! Dovrebbe reindirizzare a una pagina di richesta -->
-  <p>Non hai ancora un profilo? <a style="color:#2ECC71;text-decoration:underline;cursor:pointer">Clicca qui</a></p>
+  <p>Non sei un operatore? <a style="color:#2ECC71;text-decoration:underline;cursor:pointer">Clicca qui</a></p>
   <div>
     <button class="style-special-button" type="submit">ACCEDI</button>
     <br>
@@ -32,19 +29,21 @@
     $id = text_filter($_POST["operatore"]);
     // md5 della password
     $password = text_filter_encrypt($_POST["password"]);
-    $esistenzaUtente = checkPassword($id, $password, $db_conn);
-    if (!$esistenzaUtente){
+    $operatore = checkPassword($id, $password, $db_conn);
+    if (empty($operatore)){
       echo "
       <script>
       flatAlert('Password errata', '', 'error', 'index.php');
       </script>";
     }else{
+      if ($operatore['Nome'] == 'Amministratore'){
+        $_SESSION['admin'] = true;
+      }
       echo "
       <script>
       flatAlert('Accesso eseguito con successo', '', 'success', 'core/log.php');
       </script>";
     }
-
   }
 
  ?>
