@@ -26,6 +26,7 @@
         }
         if (isset($_GET['back'])) {
           $_SESSION['curieInclude'] = 'core/lists.php';
+          $_SESSION['searchReports'] = null;
           $_SESSION['search'] = null;
         }
       }catch(Exception $e){

@@ -256,4 +256,108 @@
     }
     return $controllo;
   }
+  function searchOperatori($search, $db_conn){
+    $operatori = array();
+    if ($search == null){
+      return false;
+    }else{
+      $sql = "SELECT * FROM t_operatori WHERE Concat(Nome, ' ', Cognome) LIKE "."'%$search%'"."";
+    }
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      $operatori["$i"] = array($ris['ID'], $ris['Nome'], $ris['Cognome'], $ris['Codice']);
+      $i++;
+    }
+    return $operatori;
+  }
+  function searchSezioni($search, $db_conn){
+    $sezioni = array();
+    if ($search == null){
+      return false;
+    }else{
+      $sql = "SELECT * FROM t_sezioni WHERE Descrizione LIKE "."'%$search%'"."";
+    }
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      $sezioni["$i"] = array($ris['ID'], $ris['Descrizione']);
+      $i++;
+    }
+    return $sezioni;
+  }
+  function searchIndirizzi($search, $db_conn){
+    $indirizzi = array();
+    if ($search == null){
+      return false;
+    }else{
+      $sql = "SELECT * FROM t_indirizzi WHERE Descrizione LIKE "."'%$search%'"."";
+    }
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      $indirizzi["$i"] = array($ris['ID'], $ris['Descrizione']);
+      $i++;
+    }
+    return $indirizzi;
+  }
+  function getReportsByOperatori($idOperatori, $db_conn){
+    $reports = array();
+    $sql = "SELECT * FROM t_controlli WHERE FK_Operatore='$idOperatori'";
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      $reports["$i"] = array($ris['ID'], $ris['Data'], $ris['FK_Operatore'], $ris['FK_Classe']);
+      $i++;
+    }
+    return $reports;
+  }
+  function getClasseBySearch($idIndirizzo, $idSezioni, $db_conn){
+    $classe = array();
+    $sql = "SELECT * FROM t_classi WHERE ";
+    $query = '';
+    if ($idIndirizzo!= null && $idSezioni){
+      $query = "FK_Sezione='$idSezioni' AND FK_Indirizzo='$idIndirizzo'";
+    }else if ($idIndirizzo == null && $idSezioni != null){
+      $query = "FK_Sezione='$idSezioni'";
+    }else if ($idIndirizzo !=null && $idSezioni == null){
+      $query = "FK_Indirizzo='$idIndirizzo'";
+    }
+    $risultato = mysqli_query($db_conn, $sql.$query);
+    if ($risultato == false){
+      die("error");
+    }
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      $classe["$i"] = $ris['ID'];
+      $i++;
+    }
+    return $classe;
+  }
+  function getReportsByClasse($classe, $db_conn){
+    $reports= array();
+    $sql = "SELECT * FROM t_controlli WHERE FK_Classe='$classe'";
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      $reports["$i"] = array($ris['ID'], $ris['Data'], $ris['FK_Operatore'], $ris['FK_Classe']);
+      $i++;
+    }
+    return $reports;
+  }
 ?>
