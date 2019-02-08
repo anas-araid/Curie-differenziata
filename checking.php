@@ -29,6 +29,16 @@
           $_SESSION['searchReports'] = null;
           $_SESSION['search'] = null;
         }
+        if ($_SESSION['reportCSV']){
+          $_SESSION['reportCSV'] = false;
+          echo "
+          <script>
+            location.href='rapporti.csv';
+            setTimeout(function(){
+              location.reload();
+            }, 100);
+          </script>";
+        }
       }catch(Exception $e){
       }
      ?>
