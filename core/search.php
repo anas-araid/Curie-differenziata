@@ -36,7 +36,7 @@
     for ($i=0; $i<count($idIndirizzi);$i++){
       $getSearchIndirizzi = getClasseBySearch($idIndirizzi[$i][0], null, $db_conn);
       for ($j=0; $j<count($getSearchIndirizzi);$j++){
-        $idClass[$classIndex] = $getSearchIndirizzi[0];
+        $idClass[$classIndex] = $getSearchIndirizzi[$j];
         $classIndex++;
       }
     }
