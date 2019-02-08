@@ -12,31 +12,47 @@
     $reports = array();
     $reportsIndex = 0;
     if (isset($idOperatori)){
-      for ($i=;$i<count($idOperatori);$i++){
-        $reports[$reportsIndex] = getReportsByOperatori($idOperatori, $db_conn);
-        $reportsIndex++;
+      for ($i=0;$i<count($idOperatori);$i++){
+        $getReports = getReportsByOperatori($idOperatori[$i][0], $db_conn);
+        for ($j=0; $j<count($getReports);$j++){
+          $reports[$reportsIndex] = $getReports[$j][0];
+          $reportsIndex++;
+        }
       }
     }
     $idClass = array();
     $classIndex = 0;
     for ($i=0; $i<count($idSezioni);$i++){
-      $idClass[$classIndex] = getClasseBySearch(null, $idSezioni[$i], $db_conn);
-      $classIndex++;
+      $getSearchSezioni = getClasseBySearch(null, $idSezioni[$i][0], $db_conn);
+      for ($j=0; $j<count($getSearchSezioni);$j++){
+        $idClass[$classIndex] = $getSearchSezioni[$j][0];
+        $classIndex++;
+      }
     }
     for ($i=0; $i<count($idIndirizzi);$i++){
-      $idClass[$classIndex] = getClasseBySearch($idIndirizzi[$i], null, $db_conn);
-      $classIndex++;
+      $getSearchIndirizzi = getClasseBySearch($idIndirizzi[$i][0], null, $db_conn);
+      for ($j=0; $j<count($getSearchIndirizzi);$j++){
+        $idClass[$classIndex] = $getSearchIndirizzi[$j][0];
+        $classIndex++;
+      }
     }
-    $idClass = array_unique($idClass):
-    $classe = getClasseBySearch($idIndirizzo, $idSezioni, $db_conn);
+    $idClass = array_unique($idClass);
+    // array_values() reindex an array starting by 0
+    $idClass = array_values($idClass);
     $classReports = array();
-    for ($i=0;$i<count($classe);$i++){
-      $classReports[$i] = getReportsByClasse($classe[$i], $db_conn);
+    $classReportIndex = 0;
+    for ($i=0;$i<count($idClass);$i++){
+      $getClasseReport = getReportsByClasse($idClass[$i], $db_conn);
+      for ($j=0; $j<count($getClasseReport);$j++){
+        $classReports[$classReportIndex] = $getClasseReport[$j][0];
+        $classReportIndex++;
+      }
     }
     for ($i=0;$i<count($classReports);$i++){
-      $reports[$reportsIndex] = $classReports[$i]['ID'];
+      $reports[$reportsIndex] = $classReports[$i];
+      $reportsIndex++;
     }
-    $reports = array_unique($reports)
+    $reports = array_unique($reports);
     $_SESSION['searchReport'] = $reports;
     return $reports;
   }

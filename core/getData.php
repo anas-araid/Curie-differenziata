@@ -258,7 +258,7 @@
   }
   function searchOperatori($search, $db_conn){
     $operatori = array();
-    if ($ID == null){
+    if ($search == null){
       return false;
     }else{
       $sql = "SELECT * FROM t_operatori WHERE Concat(Nome, ' ', Cognome) LIKE "."'%$search%'"."";
@@ -276,7 +276,7 @@
   }
   function searchSezioni($search, $db_conn){
     $sezioni = array();
-    if ($ID == null){
+    if ($search == null){
       return false;
     }else{
       $sql = "SELECT * FROM t_sezioni WHERE Descrizione LIKE "."'%$search%'"."";
@@ -294,7 +294,7 @@
   }
   function searchIndirizzi($search, $db_conn){
     $indirizzi = array();
-    if ($ID == null){
+    if ($search == null){
       return false;
     }else{
       $sql = "SELECT * FROM t_indirizzi WHERE Descrizione LIKE "."'%$search%'"."";
@@ -326,12 +326,13 @@
   }
   function getClasseBySearch($idIndirizzo, $idSezioni, $db_conn){
     $classe = array();
-    $sql = "SELECT * FROM t_classe WHERE ";
+    $sql = "SELECT * FROM t_classi WHERE ";
+    $query = '';
     if ($idIndirizzo!= null && $idSezioni){
       $query = "FK_Sezione='$idSezioni' AND FK_Indirizzo='$idIndirizzo'";
-    }else if (empty($idIndirizzo) && !empty($idSezioni)){
+    }else if ($idIndirizzo == null && $idSezioni != null){
       $query = "FK_Sezione='$idSezioni'";
-    }else if (!empty($idIndirizzo) && empty($idSezioni)){
+    }else if ($idIndirizzo !=null && $idSezioni == null){
       $query = "FK_Indirizzo='$idIndirizzo'";
     }
     $risultato = mysqli_query($db_conn, $sql.$query);
@@ -340,13 +341,13 @@
     }
     $i=0;
     while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
-      $classe["$i"] = array($ris['ID']);
+      $classe["$i"] = $ris['ID'];
       $i++;
     }
     return $classe;
   }
   function getReportsByClasse($classe, $db_conn){
-    $report= array();
+    $reports= array();
     $sql = "SELECT * FROM t_controlli WHERE FK_Classe='$classe'";
     $risultato = mysqli_query($db_conn, $sql);
     if ($risultato == false){
