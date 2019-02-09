@@ -28,6 +28,21 @@
       }
     }
   }
-
+  function updateUser($ID, $nome, $cognome, $codice, $password, $db_conn){
+    if (!is_numeric($ID)){
+      return;
+    }else{
+      if ($password == null){
+        $sql = "UPDATE t_operatori SET Nome='$nome', Cognome='$cognome', Codice='$codice' WHERE (ID='$ID')";
+      }else{
+        $sql = "UPDATE t_operatori SET Nome='$nome', Cognome='$cognome', Codice='$codice', Password='$password' WHERE (ID='$ID')";
+      }
+      $updateUser = mysqli_query($db_conn, $sql);
+      if ($updateUser==null){
+        return false;
+      }
+      return true;
+    }
+  }
 
 ?>

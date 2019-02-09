@@ -94,7 +94,7 @@
                 <div>
                   <button class="style-special-button" type="submit" name="conferma">CONFERMA</button>
                   <br>
-                  <button class="style-special-button" type="reset" onclick="location.href='checking.php?back=true'">Indietro</button>
+                  <button class="style-special-button" type="reset" onclick="location.href='checking.php?back=true'">INDIETRO</button>
                 </div>
               </form>
             </div>

@@ -112,6 +112,8 @@
                       print_r($operatori[0]);
                     ?>
                   </select>
+                  <label class="mdl-textfield__label" for="operatori">Seleziona l'utente da modificare</label>
+
                 </div><br>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                   <input class="mdl-textfield__input" type="text" id="nome" name="nome" required="" value="<?php echo $currentOperatore['Nome'] ?>">
@@ -133,10 +135,11 @@
                   <input class="mdl-textfield__input" type="password" id="confermaPassword" name="confermaPassword">
                   <label class="mdl-textfield__label" for="confermaPassword">Conferma password</label>
                 </div><br>
+                <p>*Se si compila il campo password verrà cambiata la password dell'utente selezionato</p>
                 <div>
-                  <button class="style-special-button" type="submit" name="conferma">CONFERMA</button>
+                  <button class="style-special-button" type="submit" name="conferma" value="<?php echo $currentOperatore['ID'] ?>">CONFERMA</button>
                   <br>
-                  <button class="style-special-button" type="reset" onclick="location.href='checking.php?back=true'">Indietro</button>
+                  <button class="style-special-button" type="reset" onclick="location.href='checking.php?back=true'">INDIETRO</button>
                 </div>
               </form>
             </div>
