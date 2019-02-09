@@ -34,8 +34,8 @@
           <div class="mdl-layout-spacer"></div>
           <nav class="mdl-navigation">
             <a class="mdl-navigation__link style-text-green" href="core/logout.php">Home</a>
-            <a class="mdl-navigation__link style-text-green" href="https://github.com/asdf1899/Curie-differenziata">Progetto</a>
             <a class="mdl-navigation__link style-text-green" onclick="redirectLogin()" style="cursor:pointer">Login</a>
+            <a class="mdl-navigation__link style-text-green" href="https://github.com/asdf1899/Curie-differenziata">Progetto</a>
           </nav>
         </div>
       </header>
@@ -56,6 +56,7 @@
         <section>
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--7-col mdl-cell--6-col-tablet">
+              <br>
               <?php
                 // variabile $error_message situata in dbConnection.php
                 if ($error_message) {
