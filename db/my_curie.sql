@@ -6,7 +6,7 @@ CREATE TABLE t_operatori (
   ID 		           BIGINT				NOT NULL 	AUTO_INCREMENT,
   Nome	 			     VARCHAR(50),
   Cognome			     VARCHAR(50),
-  Codice  		     VARCHAR(20)	UNIQUE NOT NULL,
+  Codice  		     VARCHAR(20)	UNIQUE,
   Password         CHAR(64),
   PRIMARY KEY(ID)
 ) ENGINE = InnoDB;

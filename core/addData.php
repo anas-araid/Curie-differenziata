@@ -22,5 +22,13 @@
       </script>";
     }
   }
-
+  function addUser($nome, $cognome, $codice, $password, $db_conn){
+    $sql = "INSERT INTO t_operatori (Nome, Cognome, Codice, Password) VALUES ('$nome', '$cognome', '$codice', '$password')";
+    try {
+      $addUser = mysqli_query($db_conn, $sql);
+    } catch (Exception $e) {
+      return false;
+    }
+    return true;
+  }
 ?>
