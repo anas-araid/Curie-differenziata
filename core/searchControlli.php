@@ -9,7 +9,7 @@
         <label class="mdl-textfield__label style-gradient-text" for="find">Cerca</label>
       </div>
       <button id="btn-search" type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-color--white ">
-        <i class="material-icons style-gradient-text">search</i>
+        <i class="material-icons style-text-green">search</i>
       </button>
     </form>
   </div>
@@ -43,7 +43,7 @@
                 <td><a href="showReport.php?id='.$list['ID'].'">Dettagli</a></td>
                 <td><a href="#" onclick="alertDeleteReport('.$list['ID'].')" style="color:red">Elimina</a></td>
               </tr>';
-            
+
           }
          ?>
       </tbody>

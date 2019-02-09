@@ -1,4 +1,12 @@
 <div style="text-align:center">
+  <?php
+    if ($_SESSION['admin']){
+      ?>
+      <button class="style-special-button" style="width:70%;" onclick="location.href='newUser.php'">AGGIUNGI OPERATORE</button>
+      <button class="style-special-button" style="width:70%;" onclick="location.href='editUser.php'">MODIFICA OPERATORE</button>
+      <?php
+    }
+   ?>
   <button class="style-special-button" style="width:70%;" onclick="location.href='newReport.php'">NUOVO CONTROLLO</button>
 </div>
 <div>
