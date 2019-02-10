@@ -36,6 +36,11 @@ body, h1, h2, h3, h4, h5, h6, p, a, span{
   position:relative;
   color:white;
 }
+.style-button-green:hover{
+  border: 0.5px solid #2ECC71;
+  background-color: white;
+  color: #2ECC71;
+}
 .style-special-button{
   background-color: white;
   border: 0.5px solid #2ECC71;

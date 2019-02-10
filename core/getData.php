@@ -358,4 +358,40 @@
     }
     return $reports;
   }
+  // GET STATISTICS
+  function getReportYears($db_conn){
+    $sql = "SELECT YEAR(Data) as anno FROM t_controlli GROUP BY anno DESC";
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $years = array();
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      $years[$i] = $ris["anno"];
+      $i++;
+    }
+    return $years;
+  }
+  function getNumControlli($anno, $isFrequent, $db_conn){
+    $frequent = "";
+    if ($isFrequent){
+      $frequent = " ORDER BY n_controlli DESC LIMIT 5";
+    }
+    if ($anno != ""){
+      $anno = "WHERE YEAR(Data) = '$anno'";
+    }
+    $report = array();
+    $sql = "SELECT FK_Classe AS Classe, COUNT(FK_Classe) AS n_controlli, ID AS id FROM t_controlli $anno GROUP BY FK_Classe".$frequent;
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      $report[$i] = array($ris['id'], $ris['Classe'], $ris['n_controlli']);
+      $i++;
+    }
+    return $report;
+  }
 ?>
