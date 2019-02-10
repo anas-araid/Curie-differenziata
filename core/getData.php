@@ -358,6 +358,42 @@
     }
     return $reports;
   }
+  function getClassFromReport($anno, $db_conn){
+    if ($anno){
+      $anno = " WHERE YEAR(Data) = '$anno'";
+    }
+    $sql = "SELECT DISTINCT FK_Classe FROM t_controlli $anno";
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $classi = array();
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      $classi[$i] = $ris["FK_Classe"];
+      $i++;
+    }
+    return $classi;
+  }
+  function getRatingByReport($anno, $db_conn){
+    if ($anno){
+      $anno = " YEAR(Data) = '$anno'";
+    }else{
+      $anno = ' ';
+    }
+    $sql = "SELECT Valutazioni FROM t_controlli WHERE FK_Controllo  $anno";
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $rating = array();
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      $rating[$i] = $ris["Valutazioni"];
+      $i++;
+    }
+    return $rating;
+  }
   // GET STATISTICS
   function getReportYears($db_conn){
     $sql = "SELECT YEAR(Data) as anno FROM t_controlli GROUP BY anno DESC";
@@ -378,8 +414,10 @@
     if ($isFrequent){
       $frequent = " ORDER BY n_controlli DESC LIMIT 5";
     }
-    if ($anno != ""){
+    if ($anno){
       $anno = "WHERE YEAR(Data) = '$anno'";
+    }else{
+      $anno = ' ';
     }
     $report = array();
     $sql = "SELECT FK_Classe AS Classe, COUNT(FK_Classe) AS n_controlli, ID AS id FROM t_controlli $anno GROUP BY FK_Classe".$frequent;

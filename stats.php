@@ -85,18 +85,21 @@
                 }
               </script>
               <div style="text-align:center">
+                <!-- ###      SELEZIONA ANNO E RIEPILOGO CONTROLLI         ### -->
 
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty is-upgraded" style="width:40%" data-upgraded=",MaterialTextfield">
                   <select id="anno" onchange="updateYears()" class="mdl-textfield__input" style="outline:none">
-                    <option value="1">TUTTI</option>
+                    <option value="1" selected>TUTTI</option>
                     <?php
                       $years = getReportYears($db_conn);
-                      $annoSelezionato = "";
+                      $annoSelezionato = false;
                       if (isset($_GET['year'])){
                         $annoSelezionato = $_GET['year'];
                         if (!in_array($annoSelezionato, $years)){
-                          $annoSelezionato = "";
+                          $annoSelezionato = false;
                         }
+                      }else{
+                        echo "<script>updateYears()</script>";
                       }
                       for ($i=0; $i < count($years); $i++){
                         $selected = "";
@@ -116,6 +119,88 @@
                          RIEPILOGO CONTROLLI
                 </button>
               </div>
+
+              <!-- ###      GRAFICO MEDIE VALUTAZIONI PIU' ALTE         ### -->
+              <?php
+                // restituisce distintamente le classi nei controlli
+                $classi = getClassFromReport($annoSelezionato, $db_conn);
+                $chartData = array();
+                $chartLabel = array();
+                $idControlli = array();
+                $cestini = array();
+                $reports = array();
+                $ratings = array();
+                for ($i=0;$i<count($classi);$i++){
+                  $controllo = getReportsByClasse($classi[$i], $db_conn);
+                  for ($j=0;$j<count($controllo);$j++){
+                    $idControlli[$j] = $controllo[$j][0];
+                  }
+                  for ($t=0;$t<count($idControlli);$t++){
+                    $cestini[$t] = getCestiniByControllo($idControlli[$t], $db_conn);
+                  }
+                  $ratingIndex = 0;
+                  for ($c=0;$c<count($cestini);$c++){
+                    for ($cc=0;$cc<count($cestini[$c]);$cc++){
+                      $ratings[$ratingIndex] = $cestini[$c][$cc][2];
+                      $ratingIndex++;
+                    }
+                  }
+                  // reports contiene id della classe + un array con tutte le sue valutazioni
+                  $reports[$i] = array($classi[$i], $ratings);
+                }
+                for ($j=0;$j<count($reports);$j++){
+                  $classe = getClasse($reports[$j][0], null, $db_conn);
+                  $indirizzo = getIndirizzi($classe['FK_Indirizzo'], $db_conn);
+                  $sezione = getSezioni($classe['FK_Sezione'], $db_conn);
+                  $classeCompleta = ($sezione['Descrizione'] != '--') ? ($sezione['Descrizione'].' '.$indirizzo['Descrizione']) : ($indirizzo['Descrizione']);
+                  if ($reports[$j][1] != null){
+                    $avgRating = array_sum($reports[$j][1]) / count($reports[$j][1]);
+                  }
+                  $chartData[$j] = round($avgRating, 2);
+                  $chartLabel[$j] = $classeCompleta;
+                }
+
+                // conversione da array php a qullo javscript
+                $chartLabel = json_encode($chartLabel);
+                $chartData = json_encode($chartData);
+              ?>
+              <div style="text-align:center">
+                <h5 class="style-text-green" style="text-align:center">Aule con le valutazioni medie più alte:</h5><br>
+                <canvas id="chartMedieValutazioni" style="max-height:auto;max-width:300px;text-align:center;display:unset"></canvas>
+              </div>
+              <script>
+                // lista colori
+                chartColors = {
+                  1: '#e74c3c',
+                  2: '#e67e22',
+                  3: '#2ecc71',
+                  4: '#f1c40f',
+                  5: '#3498db',
+                  6: '#9b59b6',
+                  7: '#34495e'
+                };
+                var colors = Array();
+                for (var i=0; i < <?php echo $chartData ?>.length;i++){
+                  colors[i]= chartColors[i+1];
+                }
+                var ctx = document.getElementById("chartMedieValutazioni").getContext('2d');
+                var data = {
+                  labels: <?php echo $chartLabel ?>,
+                  datasets: [{
+                    data: <?php echo $chartData ?>,
+                    backgroundColor: colors,
+                   }],
+                }
+                var chartMedia = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: data,
+                    options: {
+                      responsive: true
+                    }
+                });
+              </script>
+
+
             </div>
           </div>
           <div class="mdl-cell mdl-cell--1-col"></div>
@@ -123,7 +208,7 @@
         </section>
         <?php
           $tuttiControlli = "'";
-          $controlli = getNumControlli($annoSelezionato, "", $db_conn);
+          $controlli = getNumControlli($annoSelezionato, false, $db_conn);
           for ($i=0; $i < sizeOf($controlli); $i++){
             if($controlli[$i][2]==1){
               $ctrl = "controllo";
