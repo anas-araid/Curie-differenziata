@@ -46,10 +46,10 @@
   <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:95%;margin:10px">
     <thead>
       <tr style="text-align:left">
-        <th>Data</th>
-        <th>Operatore</th>
-        <th>Classe</th>
-        <th></th
+        <th class="style-td">Data</th>
+        <th class="style-td">Operatore</th>
+        <th class="style-td">Classe</th>
+        <th class="style-td"></th>
       </tr>
     </thead>
     <tbody>
@@ -75,11 +75,11 @@
           $sezione = getSezioni($classe['FK_Sezione'], $db_conn);
           $classeCompleta = ($sezione['Descrizione'] != '--') ? ($sezione['Descrizione'].' '.$indirizzo['Descrizione']) : ($indirizzo['Descrizione']);
           echo '<tr>
-              <td>'.date('d-m-Y H:i', strtotime($list[$i][1])).'</td>
-              <td>'.$operatore['Nome'].' '.$operatore['Cognome'].'</td>
-              <td>'.$classeCompleta.'</td>
-              <td><a href="showReport.php?id='.$list[$i][0].'">Dettagli</a></td>
-              <td><a href="#" onclick="alertDeleteReport('.$list[$i][0].')" style="color:red">Elimina</a></td>
+              <td class="style-td">'.date('d-m-Y H:i', strtotime($list[$i][1])).'</td>
+              <td class="style-td">'.$operatore['Nome'].' '.$operatore['Cognome'].'</td>
+              <td class="style-td">'.$classeCompleta.'</td>
+              <td class="style-td"><a href="showReport.php?id='.$list[$i][0].'">Dettagli</a></td>
+              <td class="style-td"><a href="#" onclick="alertDeleteReport('.$list[$i][0].')" style="color:red">Elimina</a></td>
             </tr>';
         }
        ?>
