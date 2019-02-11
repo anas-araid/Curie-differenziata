@@ -156,10 +156,23 @@
                   if ($reports[$j][1] != null){
                     $avgRating = array_sum($reports[$j][1]) / count($reports[$j][1]);
                   }
-                  $chartData[$j] = round($avgRating, 2);
-                  $chartLabel[$j] = $classeCompleta;
+                
+                  $valutazioniClassi[$j] = array($classeCompleta, round($avgRating, 2));
                 }
-
+                $maxRating = 7;
+                if (count($valutazioniClassi) > $maxRating ){
+                  usort($valutazioniClassi, function ($item1, $item2) {
+                    if ($item1[1] == $item2[1]) return 0;
+                    return $item1[1] < $item2[1] ? -1 : 1;
+                  });
+                  $valutazioniClassi = array_slice($valutazioniClassi, -$maxRating, $maxRating);
+                }
+                
+                for ($i=0;$i<count($valutazioniClassi);$i++){
+                  $chartData[$i] = $valutazioniClassi[$i][1];
+                  $chartLabel[$i] = $valutazioniClassi[$i][0];
+                }
+                
                 // conversione da array php a qullo javscript
                 $chartLabel = json_encode($chartLabel);
                 $chartData = json_encode($chartData);
