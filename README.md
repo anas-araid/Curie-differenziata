@@ -50,9 +50,6 @@ The final user is the school operator that will provide the checking and rating,
 ### ToDO
 
 * Stats
-* Generate and download csv
-* Search
-* Admin page
 
 #### Some coding standards
 
