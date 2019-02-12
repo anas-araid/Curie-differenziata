@@ -89,7 +89,7 @@
 
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty is-upgraded" style="width:40%" data-upgraded=",MaterialTextfield">
                   <select id="anno" onchange="updateYears()" class="mdl-textfield__input" style="outline:none">
-                    <option value="1" selected>TUTTI</option>
+                    <option value="1" selected>---</option>
                     <?php
                       $years = getReportYears($db_conn);
                       $annoSelezionato = false;
@@ -156,10 +156,10 @@
                   if ($reports[$j][1] != null){
                     $avgRating = array_sum($reports[$j][1]) / count($reports[$j][1]);
                   }
-                
+
                   $valutazioniClassi[$j] = array($classeCompleta, round($avgRating, 2));
                 }
-                $maxRating = 7;
+                $maxRating = 5;
                 if (count($valutazioniClassi) > $maxRating ){
                   usort($valutazioniClassi, function ($item1, $item2) {
                     if ($item1[1] == $item2[1]) return 0;
@@ -167,12 +167,12 @@
                   });
                   $valutazioniClassi = array_slice($valutazioniClassi, -$maxRating, $maxRating);
                 }
-                
+
                 for ($i=0;$i<count($valutazioniClassi);$i++){
                   $chartData[$i] = $valutazioniClassi[$i][1];
                   $chartLabel[$i] = $valutazioniClassi[$i][0];
                 }
-                
+
                 // conversione da array php a qullo javscript
                 $chartLabel = json_encode($chartLabel);
                 $chartData = json_encode($chartData);
