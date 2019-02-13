@@ -2,7 +2,7 @@
 <div style="text-align:center">
   <br>
   <button class="style-special-button" onclick="redirectLogin()">INIZIA SUBITO!</button>
-  <button class="style-button-green" onclick="redirectLogin()">
+  <button class="style-button-green" onclick="location.href='explore.php'">
     SCOPRI DI PIÙ
   </button>
 

@@ -13,15 +13,8 @@
         // inclusoine del file per la connessione al database
         include "core/dbConnection.php";
         include "core/getData.php";
-        if (isset($_GET['login'])){
-          $_SESSION['curieInclude'] = "core/login.php";
-          echo "<script>location.href='index.php'</script>";
-        }
-        // se la session non esiste, allora integra la home al layout
-        if (!$_SESSION['curieInclude']){
-          $_SESSION = array();
-          $_SESSION['curieInclude'] = 'core/home.php';
-        }
+        $operatore = getOperatore($_SESSION['ID'], $db_conn);
+        $loggedIn = ($operatore['ID'] == null);
       }catch(Exception $e){
       }
      ?>
@@ -70,18 +63,14 @@
                 if ($_SESSION['curieInclude'] != 'core/login.php' && $_SESSION['curieInclude'] != 'core/home.php'){
                   redirect("404.php");
                 }
-                // integra il file salvato nella session
-                include $_SESSION['curieInclude'];
               ?>
-            </div>
-            <div class="mdl-cell mdl-cell--5-col mdl-cell--2-col-tablet mdl-cell--hide-phone">
-              <img src="img/recycling.png" style="width:50%"></img>
+
+
+
+              
             </div>
           </div>
           <div class="mdl-grid" style="background:url(img/bg.svg);background-repeat:no-repeat;background-size:cover;margin:0;bottom:0">
-            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
-              <img src="img/bg1.png" style="width:100%"></img>
-            </div>
             <div style="color:white">
               <h6>Curie Differenziata &copy 2019 Anas Araid</h6>
             </div>
