@@ -179,7 +179,7 @@
               ?>
               <div style="text-align:center">
                 <h5 class="style-text-green" style="text-align:center">Aule con le valutazioni medie più alte:</h5><br>
-                <canvas id="chartMedieValutazioni" style="max-height:auto;max-width:300px;text-align:center;display:unset"></canvas>
+                <canvas id="chartMedieValutazioni" style="max-height:auto;max-width:350px;text-align:center;display:unset"></canvas>
               </div>
               <script>
                 // lista colori
@@ -211,6 +211,52 @@
                       responsive: true
                     }
                 });
+              </script>
+
+
+              <!-- ###      GRAFICO NUMERO DI CONTROLLI AL MESE         ### -->
+              <?php
+                $numControlliMese = getNumControlliAnnuali($annoSelezionato, $db_conn);
+                $chartMese = array();
+                $chartNumControlli = array();
+                for ($i=0;$i<count($numControlliMese);$i++){
+                  $chartMese[$i] = $numControlliMese[$i][0];
+                  $chartNumControlli[$i] = $numControlliMese[$i][1];
+                }
+                // conversione da array php a qullo javscript
+                $maxNumAlMese = max($chartNumControlli);
+                $chartMese = json_encode($chartMese);
+                $chartNumControlli = json_encode($chartNumControlli);
+              ?>
+              <br><br>
+              <div style="text-align:center">
+                <h5 class="style-text-green" style="text-align:center">Numero di controlli al mese:</h5><br>
+                <canvas id="chartNumValutazioni" style="max-height:auto;max-width:700px;text-align:center;display:unset"></canvas>
+              </div>
+              <script>
+              var ctx = document.getElementById("chartNumValutazioni").getContext('2d');
+                 var chartAnnuali = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            datasets: [{
+                                label: 'Controlli: ',
+                                data: <?php echo $chartNumControlli ?>,
+                                backgroundColor: "rgb(39,174,96, 0.49)",
+                                borderColor: "#27ae60",
+                            }],
+                            labels: <?php echo $chartMese ?>
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        suggestedMin: 0,
+                                        suggestedMax: <?php echo $maxNumAlMese + 1  ?>
+                                    }
+                                }]
+                            }
+                        }
+                    });
               </script>
 
 
