@@ -24,7 +24,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, span{
 }
 .style-button-green{
   background-color: #2ECC71;
-  border:none;
+  border:1px solid #2ECC71;
   border-radius: 20px!important;
   padding: 15px;
   height: 40px;
@@ -37,9 +37,8 @@ body, h1, h2, h3, h4, h5, h6, p, a, span{
   color:white;
 }
 .style-button-green:hover{
-  border: 0.5px solid #2ECC71;
-  background-color: white;
   color: #2ECC71;
+  background-color: white;
 }
 .style-special-button{
   background-color: white;

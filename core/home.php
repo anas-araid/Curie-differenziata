@@ -2,4 +2,8 @@
 <div style="text-align:center">
   <br>
   <button class="style-special-button" onclick="redirectLogin()">INIZIA SUBITO!</button>
+  <button class="style-button-green" onclick="redirectLogin()">
+    SCOPRI DI PIÙ
+  </button>
+
 </div>

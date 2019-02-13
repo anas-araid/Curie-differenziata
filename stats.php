@@ -32,7 +32,7 @@
             <a class="mdl-navigation__link style-text-green" href="core/logout.php">Home</a>
             <a class="mdl-navigation__link style-text-green" href="checking.php?back=true">Controlli</a>
             <a class="mdl-navigation__link style-text-green" href="core/logout.php" style="cursor:pointer">Logout</a>
-            <a class="mdl-navigation__link style-text-green" href="https://github.com/asdf1899/Curie-differenziata">Progetto</a>
+            <a class="mdl-navigation__link style-text-green" href="https://github.com/asdf1899/Curie-differenziata">Scopri di più</a>
           </nav>
         </div>
       </header>
@@ -42,7 +42,7 @@
           <a class="mdl-navigation__link" href="core/logout.php">Home</a>
           <a class="mdl-navigation__link" href="checking.php?back=true">Controlli</a>
           <a class="mdl-navigation__link" href="core/logout.php" style="cursor:pointer">Logout</a>
-          <a class="mdl-navigation__link" href="https://github.com/asdf1899/Curie-differenziata">Progetto</a>
+          <a class="mdl-navigation__link" href="https://github.com/asdf1899/Curie-differenziata">Scopri di più</a>
           <hr>
           <a class="mdl-navigation__link" href="https://asdf1899.github.io" target="_blank">Creato da Anas Araid</a>
         </nav>
@@ -241,7 +241,7 @@
                             datasets: [{
                                 label: 'Controlli: ',
                                 data: <?php echo $chartNumControlli ?>,
-                                backgroundColor: "rgb(39,174,96, 0.49)",
+                                backgroundColor: "rgba(39,174,96, 0.49)",
                                 borderColor: "#27ae60",
                             }],
                             labels: <?php echo $chartMese ?>

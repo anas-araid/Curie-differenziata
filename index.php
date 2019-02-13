@@ -35,7 +35,7 @@
           <nav class="mdl-navigation">
             <a class="mdl-navigation__link style-text-green" href="core/logout.php">Home</a>
             <a class="mdl-navigation__link style-text-green" onclick="redirectLogin()" style="cursor:pointer">Login</a>
-            <a class="mdl-navigation__link style-text-green" href="https://github.com/asdf1899/Curie-differenziata">Progetto</a>
+            <a class="mdl-navigation__link style-text-green" href="https://github.com/asdf1899/Curie-differenziata">Scopri di più</a>
           </nav>
         </div>
       </header>
@@ -44,7 +44,7 @@
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="core/logout.php">Home</a>
           <a class="mdl-navigation__link" onclick="redirectLogin()" style="cursor:pointer">Login</a>
-          <a class="mdl-navigation__link" href="https://github.com/asdf1899/Curie-differenziata">Progetto</a>
+          <a class="mdl-navigation__link" href="https://github.com/asdf1899/Curie-differenziata">Scopri di più</a>
           <hr>
           <a class="mdl-navigation__link" href="https://asdf1899.github.io" target="_blank">Creato da Anas Araid</a>
         </nav>
@@ -82,6 +82,9 @@
             <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
               <img src="img/bg1.png" style="width:100%"></img>
             </div>
+            <div style="color:white">
+              <h6>Curie Differenziata &copy 2019 Anas Araid</h6>
+            </div>
           </div>
         </section>
         <script>
@@ -91,6 +94,7 @@
             location.href = "index.php?login=true";
           }
         </script>
+
       </main>
     </div>
   </body>
