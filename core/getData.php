@@ -432,4 +432,27 @@
     }
     return $report;
   }
+  function getNumControlliAnnuali($anno, $db_conn){
+    if ($anno){
+      $anno = "WHERE YEAR(Data) = '$anno'";
+    }else{
+      $anno = ' ';
+    }
+    $report = array();
+    $sql = "SELECT COUNT(FK_Classe) AS n_controlli, MONTH(Data) as mese FROM t_controlli $anno GROUP BY MONTH(Data)";
+    $risultato = mysqli_query($db_conn, $sql);
+    if ($risultato == false){
+      die("error");
+    }
+    $month = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+    for ($i=0; $i < 12; $i++){
+      $report[$i] = array($month[$i], 0);
+    }
+    $i=0;
+    while($ris = mysqli_fetch_array ($risultato, MYSQLI_ASSOC)){
+      $report[$ris["mese"]-1][1] = $ris["n_controlli"];
+      $i++;
+    }
+    return $report;
+  }
 ?>
