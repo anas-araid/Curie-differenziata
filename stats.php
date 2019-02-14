@@ -9,7 +9,7 @@
       try{
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         // error_reporting per togliere il notice quando non trova
-        //error_reporting(0);
+        error_reporting(0);
         // inclusione del file per la connessione al database
         include "core/dbConnection.php";
         include "core/getData.php";
@@ -131,11 +131,14 @@
                 $reports = array();
                 $ratings = array();
                 for ($i=0;$i<count($classi);$i++){
+                  // restituisce tutti i controlli in base alla classe
                   $controllo = getReportsByClasse($classi[$i], $db_conn);
                   for ($j=0;$j<count($controllo);$j++){
+                    // $idControlli contiene tutti gli id dei controlli
                     $idControlli[$j] = $controllo[$j][0];
                   }
                   for ($t=0;$t<count($idControlli);$t++){
+                    // contiene tutti i cestini in base al controllo
                     $cestini[$t] = getCestiniByControllo($idControlli[$t], $db_conn);
                   }
                   $ratingIndex = 0;
@@ -147,6 +150,10 @@
                   }
                   // reports contiene id della classe + un array con tutte le sue valutazioni
                   $reports[$i] = array($classi[$i], $ratings);
+                  $controllo = null;
+                  $idControlli = null;
+                  $cestini = null;
+                  $ratings = array();
                 }
                 for ($j=0;$j<count($reports);$j++){
                   $classe = getClasse($reports[$j][0], null, $db_conn);

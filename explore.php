@@ -9,7 +9,7 @@
       try{
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         // error_reporting per togliere il notice quando non trova
-        //error_reporting(0);
+        error_reporting(0);
         // inclusoine del file per la connessione al database
         include "core/dbConnection.php";
         include "core/getData.php";
@@ -30,9 +30,11 @@
             <?php
               if($loggedIn){
                 echo '<a class="mdl-navigation__link style-text-green" href="checking.php?back=true">Controlli</a>';
+                echo '<a class="mdl-navigation__link style-text-green" href="core/logout.php" style="cursor:pointer">Logout</a>';
+              }else{
+                echo '<a class="mdl-navigation__link style-text-green" onclick="redirectLogin()" style="cursor:pointer">Login</a>';
               }
             ?>
-            <a class="mdl-navigation__link style-text-green" onclick="redirectLogin()" style="cursor:pointer">Login</a>
             <a class="mdl-navigation__link style-text-green" href="explore.php">Scopri di più</a>
           </nav>
         </div>

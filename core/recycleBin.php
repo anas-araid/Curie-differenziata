@@ -2,7 +2,6 @@
   <h4><?php echo ($_SESSION['Classe'] != "--") ? $_SESSION['Classe']." ".$_SESSION['TipoIndirizzo'] : $_SESSION['TipoIndirizzo']; ?></h4>
   <div>
     <button class="style-special-button" style="width:60%;" onclick="redirectIndietro()">INDIETRO</button>
-    <button class="style-special-button" style="width:60%;" onclick="location.href=''">VALUTAZIONI PRECEDENTI</button>
   </div>
   <hr style="width:80%;display:inline-block"/>
   <form method="post" action="core/saveBin.php" enctype="multipart/form-data">
