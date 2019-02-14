@@ -14,7 +14,7 @@
         include "core/dbConnection.php";
         include "core/getData.php";
         $operatore = getOperatore($_SESSION['ID'], $db_conn);
-        $loggedIn = ($operatore['ID'] == null);
+        $loggedIn = ($operatore['ID'] != null);
       }catch(Exception $e){
       }
      ?>
@@ -27,6 +27,11 @@
           <div class="mdl-layout-spacer"></div>
           <nav class="mdl-navigation">
             <a class="mdl-navigation__link style-text-green" href="core/logout.php">Home</a>
+            <?php
+              if($loggedIn){
+                echo '<a class="mdl-navigation__link style-text-green" href="checking.php?back=true">Controlli</a>';
+              }
+            ?>
             <a class="mdl-navigation__link style-text-green" onclick="redirectLogin()" style="cursor:pointer">Login</a>
             <a class="mdl-navigation__link style-text-green" href="explore.php">Scopri di più</a>
           </nav>
@@ -36,6 +41,11 @@
         <span class="mdl-layout-title style-text-green" style="font-weight:500">Curie</span><span class="mdl-layout-title style-text-grey" style="font-weight:100">Differenziata</span>
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="core/logout.php">Home</a>
+          <?php
+            if($loggedIn){
+              echo '<a class="mdl-navigation__link style-text-green" href="checking.php?back=true">Controlli</a>';
+            }
+          ?>
           <a class="mdl-navigation__link" onclick="redirectLogin()" style="cursor:pointer">Login</a>
           <a class="mdl-navigation__link" href="explore.php">Scopri di più</a>
           <hr>
@@ -60,14 +70,11 @@
                       }
                     </script>";
                 }
-                if ($_SESSION['curieInclude'] != 'core/login.php' && $_SESSION['curieInclude'] != 'core/home.php'){
-                  redirect("404.php");
-                }
               ?>
 
 
 
-              
+
             </div>
           </div>
           <div class="mdl-grid" style="background:url(img/bg.svg);background-repeat:no-repeat;background-size:cover;margin:0;bottom:0">
