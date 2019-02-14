@@ -6,7 +6,7 @@
   $browser = $_SERVER['HTTP_USER_AGENT'];
   $line = "Connessione: [".$timestamp."] - ".$_SESSION['Nome']." ".$_SESSION['Cognome']." - ".$ipaddress." - ".$browser."\n";
   $filename = "log.txt";
-  $filedir = "../$filename";
+  $filedir = "../logs/$filename";
   if (!file_exists($filedir)){
     $log = fopen($filedir, "w");
   }else{

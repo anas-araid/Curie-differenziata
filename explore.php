@@ -46,9 +46,11 @@
           <?php
             if($loggedIn){
               echo '<a class="mdl-navigation__link style-text-green" href="checking.php?back=true">Controlli</a>';
+              echo '<a class="mdl-navigation__link style-text-green" href="core/logout.php" style="cursor:pointer">Logout</a>';
+            }else{
+              echo '<a class="mdl-navigation__link style-text-green" onclick="redirectLogin()" style="cursor:pointer">Login</a>';
             }
           ?>
-          <a class="mdl-navigation__link" onclick="redirectLogin()" style="cursor:pointer">Login</a>
           <a class="mdl-navigation__link" href="explore.php">Scopri di più</a>
           <hr>
           <a class="mdl-navigation__link" href="https://asdf1899.github.io" target="_blank">Creato da Anas Araid</a>
