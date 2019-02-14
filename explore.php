@@ -58,7 +58,8 @@
         </section>
         <section>
           <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--7-col mdl-cell--6-col-tablet">
+            <div class="mdl-cell mdl-cell--1-col"></div>
+            <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
               <br>
               <?php
                 // variabile $error_message situata in dbConnection.php
@@ -71,16 +72,70 @@
                     </script>";
                 }
               ?>
-
-
-
-
+              <div style="text-align:center">
+                <br>
+                <h3 class="style-text-darkGrey">Per un ambiente più pulito.</h3><br>
+                <h4 class="style-text-grey">
+                  La raccolta differenziata è il miglior modo per preservare e mantenere le risorse naturali.<br>
+                  Riciclare, riusare e valorizzare i rifiuti, dalla carta alla plastica, dal vetro alle pile esauste
+                  contribuisce a conservare un ambiente più ricco.
+                </h4><br><br>
+              </div><br>
+              <div class="mdl-grid" style="text-align:center">
+                <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet">
+                  <img src="img/explore1.png" style="max-height:80px">
+                  <h5>Ridurre</h5>
+                </div>
+                <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet">
+                  <img src="img/explore2.png" style="max-height:80px">
+                  <h5>Riutilizzare</h5>
+                </div>
+                <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet">
+                  <img src="img/explore3.png" style="max-height:80px">
+                  <h5>Riciclare</h5>
+                </div>
+              </div>
+              <br><br>
             </div>
+            <div class="mdl-cell mdl-cell--1-col"></div>
           </div>
-          <div class="mdl-grid" style="background:url(img/bg.svg);background-repeat:no-repeat;background-size:cover;margin:0;bottom:0">
-            <div style="color:white">
-              <h6>Curie Differenziata &copy 2019 Anas Araid</h6>
+
+        </section>
+        <section>
+          <div style="text-align:center;background:url(img/bg.jpg);background-repeat:no-repeat;background-size:cover;margin:0;bottom:0;background-attachment: fixed;padding:20px">
+            <h3 class="style-text-white">Differenziamo 2.0</h3><br>
+            <h4 class="style-text-white">
+              Il progetto <i>Differenziamo 2.0</i>, promosso dall'istituto <b>Marie Curie</b>: principale polo scolastico dell'Alta Valsugana, mira
+              al monitoraggio dell'andamento delle attività di differenziazione tramite metodi di controlli e valutazione da parte dei
+              collaboratori scolastici.<br> Per incentivare la collaborazione di tutti, verrà stilata una classifica parziale.
+              Il comportamento virtuoso o negativo degli studenti nel differenziare i rifiuti, verrà segnalato al proprio coordinatore
+              ed andrà ad influenzare il voto di capacità relazionale.
+            </h4><br>
+          </div>
+        </section>
+        <section>
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--1-col"></div>
+            <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-tablet">
+              <div style="text-align:center;margin:30px">
+                <h3 class="style-text-darkGrey">Responsabili</h3><br>
+                <ul style="text-align:left;font-size:20px">
+                  <li>Prof. Sebastiano Libri</li>
+                  <li>Prof. Antonio Marasco</li>
+                  <li>Prof.ssa Carla Zanei</li>
+                </ul>
+              </div>
+              <div style="text-align:left;">
+                <h5 class="style-text-darkGrey"><b>Telefono</b>: 0461 530226</h5>
+                <h5 class="style-text-darkGrey"><b>Indirizzo</b>: Via S. Pietro, 24 - 38057 Pergine Valsugana (TN)</h5>
+              </div>
             </div>
+            <div class="mdl-cell mdl-cell--1-col"></div>
+          </div>
+        </section>
+        <section>
+          <div class="mdl-grid" style="position:relative;background:url(img/bg.svg);background-repeat:no-repeat;background-size:cover;margin:0;bottom:0;min-height:300px">
+            <h6 style="position:absolute;color:white;bottom:0">Curie Differenziata &copy 2019 Anas Araid</h6>
           </div>
         </section>
         <script>
