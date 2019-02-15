@@ -16,7 +16,6 @@
     <input class="mdl-textfield__input" type="password" id="password" name="password" required="">
     <label class="mdl-textfield__label" for="password">Password</label>
   </div>
-  <p>Non sei un operatore? <a style="color:#2ECC71;text-decoration:underline;cursor:pointer">Clicca qui</a></p>
   <div>
     <button class="style-special-button" type="submit">ACCEDI</button>
     <br>
