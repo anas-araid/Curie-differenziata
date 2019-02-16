@@ -49,7 +49,7 @@ The final user is the school operator that will provide the checking and rating,
 
 ### ToDO
 
-* Stats
+* Comment code
 
 #### Some coding standards
 
