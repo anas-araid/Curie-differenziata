@@ -1,5 +1,6 @@
 <div style="text-align:center">
   <?php
+    // se si ha fatto l'accesso con Amministratore allora mostra i due pulsanti per gestire gli utenti
     if ($_SESSION['admin']){
       ?>
       <button class="style-special-button" style="width:70%;" onclick="location.href='newUser.php'">AGGIUNGI OPERATORE</button>
@@ -66,6 +67,7 @@
             </script>";
           }
         }
+        // restituisce un array con tutti i controlli
         $list = getControlli(null, $db_conn);
         for ($i=0; $i < count($list); $i++){
           $checkingExists = true;

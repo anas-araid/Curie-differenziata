@@ -1,5 +1,6 @@
 <form action="" method="POST" style="text-align:center">
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <!-- Inserisco nel select tutti gli utenti dal db -->
     <select class="mdl-textfield__input" id="operatore" name="operatore" required="" style="outline:none">
       <?php
         // $users contiene un array con le info degli operatori
@@ -24,10 +25,11 @@
 </form>
 <?php
   if(isset($_POST['password'])){
-    // text_filter l'input
+    // text_filter dell'input
     $id = text_filter($_POST["operatore"]);
     // md5 della password
     $password = text_filter_encrypt($_POST["password"]);
+    // controlla la password e restituisce i dati dell'utente
     $operatore = checkPassword($id, $password, $db_conn);
     if (empty($operatore)){
       echo "
@@ -35,6 +37,7 @@
       flatAlert('Password errata', '', 'error', 'index.php');
       </script>";
     }else{
+      // se l'operatore è 'Amministatore' allora avrà delle funzionalità in più
       if ($operatore['Nome'] == 'Amministratore'){
         $_SESSION['admin'] = true;
       }

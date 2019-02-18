@@ -1,4 +1,5 @@
 <div style="text-align:center;">
+  <!-- Mostra il titolo della classe -->
   <h4><?php echo ($_SESSION['Classe'] != "--") ? $_SESSION['Classe']." ".$_SESSION['TipoIndirizzo'] : $_SESSION['TipoIndirizzo']; ?></h4>
   <div>
     <button class="style-special-button" style="width:60%;" onclick="redirectIndietro()">INDIETRO</button>

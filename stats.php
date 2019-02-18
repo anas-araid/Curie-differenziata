@@ -96,6 +96,7 @@
                   <select id="anno" onchange="updateYears()" class="mdl-textfield__input" style="outline:none">
                     <option value="1" selected>---</option>
                     <?php
+                      // restituisce tutti gli anni dei controlli
                       $years = getReportYears($db_conn);
                       $annoSelezionato = false;
                       if (isset($_GET['year'])){
@@ -111,6 +112,7 @@
                         if ($annoSelezionato == $years[$i]){
                           $selected = "selected";
                         }
+                        // inserisco i valori nel select
                         echo '<option value="'.$years[$i].'"  '.$selected.'>'.$years[$i].'</option>';
                       }
 
@@ -166,12 +168,14 @@
                   $sezione = getSezioni($classe['FK_Sezione'], $db_conn);
                   $classeCompleta = ($sezione['Descrizione'] != '--') ? ($sezione['Descrizione'].' '.$indirizzo['Descrizione']) : ($indirizzo['Descrizione']);
                   if ($reports[$j][1] != null){
+                    // fa la media delle valutazioni della classe
                     $avgRating = array_sum($reports[$j][1]) / count($reports[$j][1]);
                   }
-
+                  // salva in $valutazioniClassi la classe e la media delle valutazioni
                   $valutazioniClassi[$j] = array($classeCompleta, round($avgRating, 2));
                 }
                 $maxRating = 5;
+                // ordina l'array in modo che i primi $maxRating valori siano per primi
                 if (count($valutazioniClassi) > $maxRating ){
                   usort($valutazioniClassi, function ($item1, $item2) {
                     if ($item1[1] == $item2[1]) return 0;

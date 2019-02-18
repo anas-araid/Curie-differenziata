@@ -72,6 +72,7 @@
                       }
                     </script>";
                 }
+                // se le sessioni sono diverse dalle seguenti allora rimanda alla pagina di errore
                 if ($_SESSION['curieInclude'] != 'core/login.php' && $_SESSION['curieInclude'] != 'core/home.php'){
                   redirect("404.php");
                 }

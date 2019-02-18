@@ -124,6 +124,7 @@
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                       <select class="mdl-textfield__input" id="classe" name="classe" style="outline:none">
                         <?php
+                          // Aggiorna le classi in base all'indirizzo
                           if (isset($_GET['key'])){
                             $key = $_GET['key'];
                             //echo "<script>document.getElementById('classe').disabled = 'false';</script>";

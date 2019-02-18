@@ -5,6 +5,7 @@
 <html>
   <head>
     <?php
+      // includo il header del sito
       include "core/_header.php";
       try{
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -13,13 +14,14 @@
         // inclusione del file per la connessione al database
         include "core/dbConnection.php";
         include "core/getData.php";
-
+        // restituisce i dati dell'operatore in base all'ID
         $operatore = getOperatore($_SESSION['ID'], $db_conn);
+        // se l'id non esiste allora fa il logout
         if ($operatore['ID'] == null){
           header('location:core/logout.php');
         }
 
-        // se la session non esiste, allora integra i contolli al layout
+        // se la session non esiste, allora integra la lista dei contolli al layout
         if (!$_SESSION['curieInclude']){
           $_SESSION = array();
           $_SESSION['curieInclude'] = 'core/lists.php';
@@ -29,6 +31,7 @@
           $_SESSION['searchReports'] = null;
           $_SESSION['search'] = null;
         }
+        // se la session 'reportCSV' è true allora scarica il file rapporti.csv
         if ($_SESSION['reportCSV']){
           $_SESSION['reportCSV'] = false;
           echo "
@@ -102,6 +105,7 @@
           <div class="mdl-cell mdl-cell--1-col"></div>
         </section>
         <?php
+          // quando si sta creando un controllo allora mostra il pulsante avanti
           if ($_SESSION['curieInclude'] == "core/recycleBin.php"){
             echo '
             <script>var salva = "salva"</script>
