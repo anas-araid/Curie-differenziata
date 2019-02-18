@@ -127,6 +127,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, span{
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 2000!important;
 
   -webkit-transform: translate3d(0, -50px, 0);
   -ms-transform: translate3d(0, -50px, 0);
@@ -138,6 +139,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, span{
 }
 
 .pace.pace-active {
+  z-index: 2000!important;
   -webkit-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
@@ -146,7 +148,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, span{
 .pace .pace-progress {
   display: block;
   position: fixed;
-  z-index: 2000;
+  z-index: 2000!important;
   top: 0;
   right: 100%;
   width: 100%;

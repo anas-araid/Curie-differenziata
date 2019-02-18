@@ -54,6 +54,7 @@
             <a class="mdl-navigation__link style-text-green" href="checking.php?back=true">Controlli</a>
             <a class="mdl-navigation__link style-text-green" href="core/logout.php" style="cursor:pointer">Logout</a>
             <a class="mdl-navigation__link style-text-green" href="explore.php">Scopri di più</a>
+            <img src="img/mc.png" style="height:100%;z-index:10;cursor:pointer" onclick="window.open('https://www.curiepergine.gov.it')"></img>
           </nav>
         </div>
       </header>
@@ -66,6 +67,10 @@
           <a class="mdl-navigation__link" href="explore.php">Scopri di più</a>
           <hr>
           <a class="mdl-navigation__link" href="https://asdf1899.github.io" target="_blank">Creato da Anas Araid</a>
+          <hr>
+          <div class="mdl-cell--hide-desktop" style="text-align:center">
+            <img src="img/mc.png" style="width:50%;height:auto;z-index:10;cursor:pointer" onclick="window.open('https://www.curiepergine.gov.it')"></img>
+          </div>
         </nav>
       </div>
       <main class="mdl-layout__content">
