@@ -74,9 +74,6 @@ CREATE TABLE t_cestini (
 
 
 
-INSERT INTO t_operatori (Nome, Cognome, Codice, Password) VALUES ('Mario', 'Rossi', '001', '5f4dcc3b5aa765d61d8327deb882cf99');
-
-
 INSERT INTO t_tipologie (Descrizione) VALUES ('Imballaggi');
 INSERT INTO t_tipologie (Descrizione) VALUES ('Carta');
 INSERT INTO t_tipologie (Descrizione) VALUES ('Secco residuo');
