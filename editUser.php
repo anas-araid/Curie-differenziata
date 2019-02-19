@@ -125,7 +125,7 @@
                   <label class="mdl-textfield__label" for="nome">Nome</label>
                 </div><br>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="cognome" name="cognome" required="" value="<?php echo $currentOperatore['Cognome'] ?>">
+                  <input class="mdl-textfield__input" type="text" id="cognome" name="cognome" value="<?php echo $currentOperatore['Cognome'] ?>">
                   <label class="mdl-textfield__label" for="cognome">Cognome</label>
                 </div><br>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
